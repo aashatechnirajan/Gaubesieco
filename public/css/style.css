@@ -30,7 +30,8 @@
 }
 
 body {
-    background: #f1efef !important;
+    background: var(--white-green) !important;
+    margin: 0 !important;
 }
 
 a {
@@ -278,9 +279,9 @@ input::placeholder {
 /* icons size */
 
 .customicon{
-    font-size:24px;
-    height:calc(10px + 4.8vh);
-    width:calc(4px + 2.8vw);
+    font-size:20px;
+    height:calc(10px + 4.6vh);
+    width:calc(4px + 2.6vw);
     background: var(--off-green);
     display: flex;
     justify-content: center;
@@ -289,6 +290,19 @@ input::placeholder {
     color: var(--pure-white);
 
 }
+
+@media (max-width:992px) {
+    .customicon{
+        font-size:20px;
+        height:calc(10px + 4.6vh);
+        width:calc(30px + 2.6vw);
+    
+    }
+   
+}
+
+
+
 
 
  /* image controller */
@@ -370,22 +384,7 @@ input::placeholder {
     width: 10%;
 }
 
-.navsection {
-    background: var(--green) !important;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
-.navsection .nav-item {
-    font-size: 20px !important;
-    font-weight: 400;
-    text-transform: capitalize;
-}
-
-.navsection .nav-item a {
-    color: white !important;
-}
 
 .logoimg {
     width: auto;
@@ -415,12 +414,10 @@ input::placeholder {
     .navsection {
         background: var(--green) !important;
         position: sticky;
-        top: 2rem;
-        /* Ensure it's fully at the top */
         z-index: 1000;
-        padding-top: 0.8rem;
         width: 100%;
-        /* Ensure it spans the full width */
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     /* Optional: To provide a shadow or border to differentiate it from content */
@@ -465,41 +462,6 @@ input::placeholder {
     }
 }
 
-.crossmenu {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 60px;
-    height: 44px;
-    background: var(--freegreen);
-    border-radius: 8px;
-}
-
-.crossmenu:hover {
-    background: var(--freegreen);
-    /* Reverse gradient on hover */
-}
-
-.linea {
-    height: 4px;
-    width: 76%;
-    background-color: white;
-    transition: all 0.3s ease;
-}
-
-.crossmenu.cross .line1 {
-    transform: rotate(45deg) translate(11px, 5px);
-}
-
-.crossmenu.cross .line2 {
-    opacity: 0;
-}
-
-.crossmenu.cross .line3 {
-    transform: rotate(-45deg) translate(11px, -5px);
-}
 
 .upperlogout {
     display: none;
@@ -1092,7 +1054,6 @@ input::placeholder {
     width: 25vw;
     position: absolute;
     top: 7rem;
-    right: 0.1rem;
     color: white;
     flex-direction: column;
     align-items: center;
@@ -1795,23 +1756,13 @@ display: none;
 
 .counter {
     position: absolute;
-    top: 0.8rem;
-    right: 6rem;
+    bottom: 0.8rem;
     padding: 0 8px;
     background: black;
     border-radius: 20px;
     font-size: 14px;
 }
 
-.top-counter {
-    position: absolute;
-    padding: 0 8px;
-    top: 1rem;
-    right: 1rem;
-    background: black;
-    border-radius: 20px;
-    font-size: 14px;
-}
 
 .top-fa-heart {
     position: absolute;
@@ -1838,16 +1789,6 @@ display: none;
         margin: 0 0 0 1rem;
         margin-top: -1.2rem !important;
         color: green;
-    }
-
-    .top-fa-heart {
-        top: 0.4rem;
-        right: 1rem;
-    }
-
-    .top-counter {
-        top: 0.4rem;
-        right: 1rem;
     }
 }
 
