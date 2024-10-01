@@ -1,0 +1,89 @@
+
+
+{{--
+
+<section class="container-fluid gapbetweensection">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="title text-center">
+          <div class="xs-text1 dashline">Trusted Real Estate Care</div>
+          <div class="lg-text">Latest BLOG for you</div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        @foreach ($blogs as $blog)
+          <div class="swiper-slide">
+            <div class="card my-1">
+              @php
+                $images = json_decode($blog->image, true); // Decode the JSON array into a PHP array
+              @endphp
+              @if (!empty($images))
+                @foreach ($images as $image)
+                  <img class="card-img-top img-fluid" src="{{ asset('storage/blog_images/' . basename($image)) }}" alt="Blog image">
+                @endforeach
+              @else
+                <p>No images available</p>
+              @endif
+              <div class="card-body">
+                <h5 class="md-text">{{ $blog->title }}</h5>
+                <p class="sm-text">
+                  {{ strlen($blog->description) > 150 ? substr($blog->description, 0, 150) . '...' : $blog->description }}
+                </p>
+                <a href="{{ route('singleblogpost', ['id' => $blog->id]) }}" class="btn-buttongreen">Read more</a>
+              </div>
+            </div>
+          </div>
+    @endforeach
+      </div>
+    </div>
+  </div>
+</section>
+--}}
+<div class="container my-3">
+
+<p class="btn-buttonoutline">
+  nirajan
+
+</p>
+<p class="btn-buttonblack">
+  nirajan
+
+</p>
+<p class="btn-buttonwhite">
+  nirajan
+
+</p>
+<p class="btn-xsbutton">
+  +
+</p>
+<p class="btn-xsbutton-lg">
+  6
+</p>
+<p class="btn-xsbutton">
+  -
+</p>
+
+<i class="fa-solid fa-chart-area customicon"></i>
+
+<p class="lg-text">hello</p>
+<p class="md-text">hello</p>
+<p class="sm-text">hello</p>
+<p class="sm-text">hello</p>
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="mdimage-exlg">
+<p class="xs-text">hello</p>
+<i class="fa-solid fa-chart-area customicons"></i>
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="lgimage">
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="lgimage-lg">
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="mdimage-lg">
+
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="mdimage">
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="smimage">
+<img src="{{asset("image/about.jpg")}}" alt="" srcset="" class="smimage-lg">
+
+
+
+</div>
