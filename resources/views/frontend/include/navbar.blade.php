@@ -155,7 +155,7 @@
           <div class="linea line2"></div>
           <div class="linea line3"></div>
         </i>
-        <a class="navbar-brand" href="/"> <img src="{{ asset('image/logo.png') }}" alt="Logo" class="logoimg" /></a>
+        <a class="navbar-brand" href="/"> <img src="{{ asset('image/logos.png') }}" alt="Logo" class="logoimg" /></a>
       </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -179,7 +179,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">blog</a>
+            <a class="nav-link" href="{{ route('blog') }}">blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">contact</a>

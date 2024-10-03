@@ -17,8 +17,7 @@
 {{--  @include('frontend.include.topnav')--}}
   
     @include('frontend.include.navbar')
-    
-    {{-- @yield('content')--}}
+     @yield('content') 
     @include('frontend.include.footer')
     @include('frontend.include.script')
 </body>

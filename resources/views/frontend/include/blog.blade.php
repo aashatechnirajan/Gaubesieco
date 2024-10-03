@@ -1,7 +1,6 @@
 
 
 {{--
-
 <section class="container-fluid gapbetweensection">
   <div class="container">
     <div class="row mb-4">
@@ -42,7 +41,151 @@
     </div>
   </div>
 </section>
+
 --}}
+
+<style>
+  .explorecat{
+  background:#F1EFEF;
+
+}
+  .swiper-wrapper :nth-child(1) .card{
+    background:rgba(124, 158, 119, 0.11);
+  }
+  .swiper-wrapper :nth-child(2) .card{
+    background:rgba(241, 225, 210, 1);
+  }
+  .swiper-wrapper :nth-child(3) .card{
+    background:#CCD0E8;
+  }
+  .swiper-wrapper :nth-child(4) .card{
+    background:#FDE0E9;
+  }
+
+
+
+  @media(max-width:450px){
+        .needhide{
+            display:none ;
+        }
+      
+    }
+
+
+
+
+
+</style>
+
+
+
+<section class="container-fluid explorecat sectiongap">
+  <div class="container">
+    <div class="row fcc">
+    <img class="lgimage-lg  col-md-8" src="{{asset("image/house1.png")}}" alt="Blog image">
+
+      <div class="swiper col-md-8">
+        <div class="d-flex flex-column p-0 m-0 pb-3">
+        <span class="extralarger p-0 m-0">explore</span>
+        <span class="greenhighlight extralarger p-0 m-0">categories</span>
+        </div>
+
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper ">
+        @foreach ($blogs as $blog)
+          <div class="swiper-slide">
+            <div class="card fcc py-2  col-md-10 p-0 m-0">
+              <div class="needhide">
+              <img class=" mdimage " src="{{asset("image/house1.png")}}" alt="Blog image">
+              </div>
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card fcc py-2  col-md-10 p-0 m-0">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="card fcc py-2  col-md-10">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card fcc py-2 col-md-10">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide ">
+            <div class="card fcc py-2  col-md-10">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+    @endforeach
+
+
+    </div>
+    
+   </div>
+
+    </div>
+ 
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+{{--
+
 <div class="container my-3">
 
 <p class="btn-buttonoutline">
@@ -87,3 +230,4 @@
 
 
 </div>
+--}}

@@ -50,7 +50,7 @@
   const swiper = new Swiper('.swiper', {
     direction: 'horizontal',
     loop: true,
-    spaceBetween: 30,
+    spaceBetween: 0, // Set space between slides to 0
 
     // Autoplay configuration
     autoplay: {
@@ -79,6 +79,9 @@
       },
       1024: {
         slidesPerView: 3
+      },
+      1200: {
+        slidesPerView: 4 // Add this line if you want 4 slides for larger screens
       }
     }
   });
