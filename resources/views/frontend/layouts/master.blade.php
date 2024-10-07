@@ -19,6 +19,55 @@
     @include('frontend.include.navbar')
      @yield('content') 
     @include('frontend.include.footer')
+
+<style>
+
+    @media (min-width:991px) {
+        .hir{
+        display: none;
+    }
+    
+        
+    }
+    .hir{
+        background:#F9F4F4;
+        position: fixed;
+        bottom:0 ;
+        z-index: 200;
+    }
+    
+    
+
+</style>
+
+    <section class="container-fluid hir">
+    <div class="container py-2">
+        <div class="row fbc">
+            <div class="d-flex flex-column col-3">
+            <i class="fa-solid fa-house customicon"></i>
+            <span>home</span>
+            </div>
+            <div class="d-flex flex-column col-3">
+            <i class="fa-regular fa-message customicon"></i>
+            <span>message</span>
+            </div>
+            <div class="d-flex flex-column col-3">
+            <i class="fa-solid fa-cart-plus customicon"></i>
+            <span>cart</span>
+            </div>
+            <div class="d-flex flex-column col-3">
+            <i class="fa-regular fa-user customicon"></i>
+            <span>account</span>
+            </div>
+        </div>
+    </div>
+
+ </section>
+
+
+
     @include('frontend.include.script')
+
+
 </body>
 </html>

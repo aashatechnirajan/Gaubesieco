@@ -49,18 +49,31 @@
   background:#F1EFEF;
 
 }
-  .swiper-wrapper :nth-child(1) .card{
-    background:rgba(124, 158, 119, 0.11);
-  }
-  .swiper-wrapper :nth-child(2) .card{
-    background:rgba(241, 225, 210, 1);
-  }
-  .swiper-wrapper :nth-child(3) .card{
-    background:#CCD0E8;
-  }
-  .swiper-wrapper :nth-child(4) .card{
-    background:#FDE0E9;
-  }
+.swiper-slide .card{
+  border: none;
+  border-radius: var(--radius20);
+}
+.swiper-slide .card :hover{
+  border: none;
+
+}
+.swiper-slide:nth-child(3n + 1) .card {
+    background: rgba(124, 158, 119, 0.11); /* 1st, 4th, 7th, etc. */
+}
+
+.swiper-slide:nth-child(3n + 2) .card {
+    background: rgba(241, 225, 210, 1); /* 2nd, 5th, 8th, etc. */
+}
+
+.swiper-slide:nth-child(3n + 3) .card {
+    background: #CCD0E8; /* 3rd, 6th, 9th, etc. */
+}
+
+/* If you have additional styles, you can continue */
+.swiper-slide:nth-child(3n + 4) .card {
+    background: #FDE0E9; /* 4th, 7th, 10th, etc. */
+}
+
 
 
 
@@ -82,7 +95,7 @@
 <section class="container-fluid explorecat sectiongap">
   <div class="container">
     <div class="row fcc">
-    <img class="lgimage-lg  col-md-8" src="{{asset("image/house1.png")}}" alt="Blog image">
+    <img class="lgimage-lg  col-md-8 needhide" src="{{asset("image/expl.png")}}" alt="Blog image">
 
       <div class="swiper col-md-8">
         <div class="d-flex flex-column p-0 m-0 pb-3">
@@ -93,11 +106,10 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper ">
         @foreach ($blogs as $blog)
+          
           <div class="swiper-slide">
-            <div class="card fcc py-2  col-md-10 p-0 m-0">
-              <div class="needhide">
-              <img class=" mdimage " src="{{asset("image/house1.png")}}" alt="Blog image">
-              </div>
+            <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
               <div class="card-body">
               <p class="sm-text-bd text-center">
                   {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
@@ -109,7 +121,20 @@
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="card fcc py-2  col-md-10 p-0 m-0">
+          <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
+              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+              <div class="card-body">
+              <p class="sm-text-bd text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+                <p class="xs-text text-center">
+                  {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+          <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
               <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
               <div class="card-body">
               <p class="sm-text-bd text-center">
@@ -123,8 +148,8 @@
           </div>
           
           <div class="swiper-slide">
-            <div class="card fcc py-2  col-md-10">
-              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+          <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
+              <img class=" mdimage" src="{{asset("image/expl.png")}}" alt="Blog image">
               <div class="card-body">
               <p class="sm-text-bd text-center">
                   {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}
@@ -136,7 +161,7 @@
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="card fcc py-2 col-md-10">
+          <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
               <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
               <div class="card-body">
               <p class="sm-text-bd text-center">
@@ -149,8 +174,8 @@
             </div>
           </div>
           <div class="swiper-slide ">
-            <div class="card fcc py-2  col-md-10">
-              <img class=" mdimage" src="{{asset("image/house1.png")}}" alt="Blog image">
+          <div class="card fcc py-2  p-0 mx-4 col-10 mx-md-0">
+              <img class=" mdimage" src="{{asset("image/expl.png")}}" alt="Blog image">
               <div class="card-body">
               <p class="sm-text-bd text-center">
                   {{ strlen($blog->description) > 10 ? substr($blog->description, 0, 10) : $blog->description }}

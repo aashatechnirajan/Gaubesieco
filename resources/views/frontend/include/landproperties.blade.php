@@ -67,11 +67,11 @@
 <section class="container-fluid sectiongap">
     <div class="container">
         <div class="title">
-        <div class="lg-texts ">Day of the <span class="greenhighlight">deal</span> </div>
+        <div class="lg-texts  ">Day of the <span class="greenhighlight">deal</span> </div>
             <div class="xs-text-md greenhighlight ">Don't wait. The time will never be just right.</div>
         </div>
         <div class="row my-md-4 fcc flex-wrap gap-md-0 gap-1">
-            <div class="col-md-4 col-5">
+            <div class="col-md-4 col-11">
                 <div class=" offercard row col-md-12 p-2 rounded"> 
                     <p class="md-text whitehighlight py-3 d-flex justify-content-center text-center offerprice">
                     Offer Price Rs.900</p>
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-5">
+            <div class="col-md-4 col-11">
                 <div class=" offercard row col-md-12 p-2 rounded"> 
                     <p class="md-text whitehighlight py-3 d-flex justify-content-center text-center offerprice">
                     Offer Price Rs.900</p>
@@ -102,7 +102,7 @@
                 </div>
                 </div>
             </div>
-            <div class="col-md-4 col-5">
+            <div class="col-md-4 col-11">
                 <div class=" offercard row col-md-12 p-2 rounded"> 
                     <p class="md-text whitehighlight py-3 d-flex justify-content-center text-center offerprice">
                     Offer Price Rs.900</p>
@@ -278,13 +278,13 @@
     }
 
  </style>
-<section class="container-fluid  featureandhot ">
-<style>
+ <style>
     .hotproduct {
         display: none;
-        cursor: pointer;
     }
 </style>
+<section class="container-fluid  featureandhot ">
+
     <div class="container">
         <div class="row gap-5">
             <div class="col-md-8">
@@ -374,6 +374,9 @@
         </div>
     </div>
 </section>
+
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const featureDiv = document.querySelector(".featureproduct");

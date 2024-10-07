@@ -102,7 +102,7 @@
 
 
 
-<footer class="container-fluid ">
+<footer class="container-fluid mb-3 mt-2">
   <div class="container mb-2 ">
     <div class="row ">
       <div class="col-md-4 my-1 ">
@@ -197,7 +197,7 @@
       </div> 
     </div>
   </div>
-    <div class="container d-flex align-items-center  justify-content-center flex-column button-footer ">
+    <div class="container d-flex align-items-center  justify-content-center flex-column button-footer mb-md-0 mb-4">
       <p class="xs-text py-2"> © <span id="currentYear"></span><span class="greenhighlight"> Aasha Tech </span>All
         rights reserved </p>
 

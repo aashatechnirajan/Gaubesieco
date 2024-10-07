@@ -4,10 +4,11 @@
 @section("content")
 
 {{--bannersection --}}
-@include("frontend.include.indexbanner");
+@include("frontend.include.indexbanner")
 {{--blog --}}
 @include("frontend.include.blog")
-@include("frontend.include.landproperties"); 
+
+@include("frontend.include.landproperties")
 
 {{--advantage --}}
 <!-- @include("frontend.include.advantage") -->
@@ -25,5 +26,8 @@
 <!-- @include("frontend.include.testimonial") -->
 
 {{--blog --}}
+
+
+
 @endsection
 

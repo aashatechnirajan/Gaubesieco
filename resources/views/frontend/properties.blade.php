@@ -1,416 +1,518 @@
 @extends("frontend.layouts.master")
+
+
+
+<style>
+  .advertisement {
+    background: linear-gradient(rgba(124, 158, 119, 1) 0%,
+        rgba(44, 56, 42, 1) 100%);
+  }
+
+  .offerprice {
+    background: var(--off-green);
+
+  }
+
+  .offercard {
+    background: var(--green);
+  }
+
+  .customcard {
+    border: 2px solid var(--border-color);
+
+  }
+
+  .imgf {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .wrongprice {
+    text-decoration: line-through;
+
+  }
+
+  .fa-star {
+    color: var(--yellow);
+
+  }
+
+  .topic-collection {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .underlineborder {
+    position: relative;
+    color: var(--yellow);
+  }
+
+  .underlineborder::after {
+    content: " ";
+    color: var(---yellow);
+    position: absolute;
+    display: block;
+    height: 4px;
+    width: 76%;
+    bottom: -1rem;
+    border-bottom: 4px solid var(--yellow);
+
+  }
+
+  .customcard-dup {
+    background: rgba(153, 153, 153, 0.12);
+
+  }
+
+  .daydeal {
+    background: #F1F4F0;
+  }
+
+
+  .descriptionborder {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius4);
+  }
+
+
+
+  .findstockbutton {
+    background-color: #FDE0E9 !important;
+    border: 1px solid var(--text-gray) !important;
+    color: var(--yellow) !important;
+  }
+
+  .forline {
+    height: 1px;
+    width: 100%;
+    background: var(--border-color);
+    color: red;
+
+  }
+
+  .routingname {
+    background-color: #f5f5f5;
+  }
+
+  .btn-xs {
+    border-radius: var(--radius4);
+    height: 22px;
+    width: 54px;
+    font-size: 12px;
+  }
+
+  @media(max-width:450px) {
+    .needhide {
+      display: none;
+    }
+
+    .col-md-3 .customcard:nth-child(even) {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .sidebar .searchcontainer {
+    background: var(--off-green);
+    border-radius: var(--radius4);
+  }
+</style>
 @section("content")
-<section class="container-fluid">
-  <div class="row">
-    <div class="col-md-12 p-0">
-      <div class="carousel-inner mb-3">
-        <div class="row d-flex">
-          <div class="col-md-12 text-center d-flex flex-column justify-content-center align-items-center mb-2 ">
-            <img src="{{ asset('image/house3.png') }}" alt="" srcset="" class="imagecontroller imagecontrollerheight">
-            <div class="flex bannercontentheight">
-              <div class="bannercontentinnerheight ">
-                <h4 class="lg-text1">properties</h4>
-                <h5 class="md-text1">home <i class="fa-solid fa-angle-right "></i>
-                  <span class="highlight">properties</span>
-                </h5>
+<section class="container-fluid routingname ">
+  <div class="container py-3 ">
+    <p class="sm-text"><i class="fa-solid fa-location-dot greenhighlight"></i> <span>Home</span> . <span>Product</span>
+    </p>
+  </div>
+</section>
+<style>
+  .hidesinglebuy {
+    background: var(--border-color);
+    min-height: 100vh; /* Minimum height of the viewport */
+    width: 100%; /* Full width */
+    position: fixed; /* Fixed positioning to cover entire viewport */
+    top: 0; 
+    left: 0; /* Align to the left */
+    z-index: 20; 
+    display: none;
+   
+
+}
+
+
+  .fa-xmark {
+    position: absolute; 
+    top:22%; 
+    right:10%; 
+    z-index:20; 
+    background: black;
+    border-radius:var(--radius8);
+    cursor: pointer; 
+}
+
+  .showsinglebuy {
+    background: var(--green);
+    margin: 0 1rem;
+    top: 10rem;
+    position: absolute;
+    padding: 0 1rem;
+    border-radius: var(--radius4);
+  }
+  @media (max-width:700px){
+    .hidesinglebuy {
+    top:-3.5rem; 
+    left: 0;
+    bottom:20rem;
+
+
+}
+.fa-xmark {
+
+    top:25%; /* Adjust to a percentage for responsive design */
+    right:3%; 
+
+
+ 
+}
+
+  }
+</style>
+
+<section class="container-fluid hidesinglebuy">
+  <div class="container fcc ">
+  <i class="fa-solid fa-xmark customicon" onclick="closeSinglebuy()"></i>
+    <div class="row  py-3 my-1  showsinglebuy fcc gap-2">
+      <div class="col-md-8">
+        <div class="row  d-flex align-items-center border rounded shadow-sm bg-light py-2">
+          <div class="col-md-3 d-flex align-items-center">
+            <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="col-md-5 smimage-lg smimage-lgcd mx-2">
+          </div>
+          <div class="col-md-4">
+            <h5 class="sm-text"><strong>Seeds of Change helll</strong></h5>
+          </div>
+          <div class="d-flex align-items-center gap-1 col-md-3 ">
+            <button class="btn-xsbutton p-0 m-0 ">-</button>
+            <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
+            <button class="btn-xsbutton p-0 m-0 ">+</button>
+          </div>
+          <p class="xs-text-bd  yellowhighlight m-md-0 m-2 col-md-2 ">Rs 30000</p>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-3  border rounded shadow-sm bg-light">
+        <div class="row col-md-12 green p-3 gap-2">
+          <p class=" topic-collection md-text p-1">order summary </p>
+          <span class="sm-text topic-collection p-1">total items : </span>
+          <span class="sm-text topic-collection p-1">total itemss s : </span>
+          <button class="btn-buttonoutline-sm p-0 m-0 ">Buy Now</button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<section class="container-fluid singleprojectpage py-2">
+  <div class="container">
+    <div class="row gap-5">
+      <div class="col-md-8 ">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="d-flex col-md-5 ">
+                <div class="row">
+                  <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-12  lgimage-lgheightcd">
+                  <div class=" col-md-12 m-3">
+                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3 smimage-lg">
+                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3  smimage-lg ">
+                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3 smimage-lg">
+                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3   smimage-lg">
+                  </div>
+                </div>
+              </div>
+              <!-- Property Details -->
+              <div class=" col-md-7 d-flex flex-column justify-content-between ">
+                <div class="d-flex gap-1">
+                <button class="btn-buttonoutline-sm findstockbutton ">available</button>
+                <button class="btn-buttonoutline-sm findstockbutton ">stock out</button>
+
+                </div>
+               
+                <h3 class="sm-text py-2">People just don't do it anymor</h3>
+                <h3 class="xs-text pb-2">Dressing up. People just don't do it anymore. We have to change that. Give me
+                  time and
+                  I'll give you a revolution. What I hate is nasty, ugly people. The market is like a language, and you
+                  have
+                  to be able to </h3>
+
+                <div class="forline"></div>
+                <div class="d-flex flex-column p-0 m-0">
+                  <p class="m-0 p-0">
+                    <span class="xs-text-bd">Brand </span>
+                    <span class="xs-text">: ESTA BETTERU CO</span>
+                  </p>
+                  <p class="m-0 p-1">
+                    <span class="xs-text-bd">Flavour </span>
+                    <span class="xs-text">: Super Saver Pack</span>
+                  </p>
+                  <p class="m-0 p-1">
+                    <span class="xs-text-bd">Weight </span>
+                    <span class="xs-text">: 200 Grams</span>
+                  </p>
+
+                  <p class="m-0 p-1">
+                    <span class="xs-text-bd">Brand </span>
+                    <span class="xs-text">: Egg Free, Allergen-Free</span>
+                  </p>
+                  <p class="m-0 p-1">
+                    <span class="xs-text-bd">Info</span>
+                    <span class="xs-text">: ESTA BETTERU CO</span>
+                  </p>
+                  <p class="m-0 p-1 py-2 d-flex">
+                    <span class="xs-text-bd">weight</span>
+                    <span class="d-flex gap-1">
+                      <span>:</span>
+                      <button class="btn-xs">1000gm</button>
+                      <button class="btn-xs">11</button>
+                      <button class="btn-xs">11</button>
+                    </span>
+                  </p>
+                </div>
+                <h3 class="greenhighlight p-md-0 m-0  py-2">$250.24</h3>
+                <div class="d-flex align-items-center gap-2 md-py-0 py-2 ">
+                  <!-- <div class="d-flex align-items-center  gap-1">
+                    <button class="btn-xsbutton p-0 m-0 ">-</button>
+                    <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
+                    <button class="btn-xsbutton p-0 m-0 ">+</button>
+                  </div> -->
+                  <button class="btn-buttonoutline-sm p-0 m-0 ">add cart</button>
+                  <button class="btn-buttonoutline-sm p-0 m-0 " onclick="buyNowFun()">Buy Now</button>
+                  <i class="fa-regular fa-heart customicon"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Overview and Description -->
+        <div class="col-md-12 descriptionborder p-4 my-2 ">
+          <div class="row mx-2">
+            <div class="col-md-6 gap-3 d-flex">
+              <button class="btn-buttonoutline-sm p-0 m-0 ">description</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 ">add info</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 ">Review (4)</button>
+            </div>
+            <p class="xs-text py-2 ">
+              Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal
+              goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop
+              tightly neurotic hungrily some and dear furiously this apart.Spluttered narrowly yikes left
+            </p>
+          </div>
+        </div>
       </div>
-</section>
 
-{{--
-
-
-<form action="{{ route('frontend.searching') }}" method="GET" class="container-fluid py-5 propertiesfinder">
-    <div class="container">
-        <h1 class="md-text1 text-center searchhide" onclick="funsearchingon()">
-            <i class="fa-brands fa-searchengin customicons"></i> Find your properties
-        </h1>
-        <div class="justify-content-center align-items-center gap-2 flex-wrap hiddenform" id="hiddenform">
-
-        <div class="d-flex flex-column col-md-3">
-                    <label for="" class="sm-text1 des-text">Keyword</label>
-                  <input type="text" class="input bannerinput" name="location" placeholder="Keyword"
-                  value="{{ request('location') }}">
+      <div class="col-md-3 sidebar">
+        <div class="">
+          <div class="searchcontainer fcc p-2 mt-2  ">
+            <input type="text" class="footerinput m-0 p-2" placeholder="search your project">
+            <button class="search m-0 py-2 px-3"> Search</button>
+          </div>
+          <div class="featurelist-body">
+            <p class="md-text  p-2">our product </p>
+            @foreach ($properties as $property)
+              <a class="featurelist-content d-flex py-1" href="{{ route('singleproperties', ['id' => $property->id]) }}">
+                @php
+            $mainImages = !empty($property->main_image) ? json_decode($property->main_image, true) : [];
+            $mainImage = !empty($mainImages) ? asset($mainImages[0]) : asset('images/default-placeholder.png');
+        @endphp
+                <img src="{{ $mainImage }}" alt="Property Image" class="feature-smallimg"
+                data-src="holder.js/200x250?theme=thumb" />
+                <div class="featurlist-description mx-3">
+                <h3 class="sm-text">{{ $property->title }}</h3>
+                <p class="sm-text highlight">{{ $property->price }}</p>
                 </div>
-
-
-                <div class="d-flex flex-column col-md-3">
-                    <label for="" class="sm-text1 des-text">Listing type</label>
-                    <select class="input bannerinput" name="category_id" id="category_id">
-                        <option value="" disabled selected>Select Category</option>
-                        @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="d-flex flex-column col-md-3">
-                    <label for="" class="sm-text1 des-text">Select Category</label>
-                  <select class="input bannerinput" name="subcategory_id" id="subcategory_id">
-                    <option value="" disabled selected>Select Subcategory</option>
-                  </select>
-                </div>
-                <div class="d-flex flex-column col-md-3">
-                    <label for="" class="sm-text1 des-text">Select State</label>
-                  <select class="input bannerinput" name="state" id="state">
-                    <option value="" disabled selected>Select State</option>
-                    @foreach($states as $state)
-                      <option value="{{ $state }}">{{ $state }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="d-flex flex-column col-md-3">
-                    <label for="" class="sm-text1 des-text">Select Region</label>
-                  <select class="input bannerinput" name="suburb" id="suburb">
-                    <option value="" disabled selected>Select Region</option>
-                  </select>
-                </div>
-                
-                <span class="sm-text mt-2 whitehighlight advance mx-2" onclick="funOpenadvance()">Advanced ::</span>
-            <div class="d-flex flex-column col-md-3">
-                <label for="" class="sm-text1 des-text">Search</label>
-                <button type="submit" class="btn-buttonyellow ">Searsch</button>
-            </div>
-
-        </div>
-    </div>
-</form>
-  
-
-
---}}
-
-
-
-<form action="{{ route('frontend.searching') }}" method="GET" id="propertySearchForm" class="container-fluid py-4 propertiesfinder">
-    <div class="container">
-        <h1 class="md-text1 text-center searchhide" onclick="funsearchingon()">
-            <i class="fa-brands fa-searchengin customicons"></i> Find your properties
-        </h1>
-        <div class="d-flex justify-content-center align-items-center flex-wrap row gap-1" id="hiddenform">
-            <!-- First Row -->
-            <div class="col-md-3 mb-2">
-                <label for="location" class="sm-text1 des-text">Keyword</label>
-                <input type="text" class="form-control bannerinput input" name="location" id="location" placeholder="Keyword" value="{{ request('location') }}">
-            </div>
-            <div class="col-md-3 mb-2">
-                <label for="category_id" class="sm-text1 des-text">Listing Type</label>
-                <select class="form-control bannerinput input" name="category_id" id="category_id">
-                    <option value="" disabled selected>Select Category</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-3 mb-2">
-                <label for="subcategory_id" class="sm-text1 des-text">Select Subcategory</label>
-                <select class="form-control bannerinput input" name="subcategory_id" id="subcategory_id">
-                    <option value="" disabled selected>Select Subcategory</option>
-                </select>
-            </div>
-
-            <!-- Second Row -->
-            <div class="col-md-3 mb-2">
-                <label for="state" class="sm-text1 des-text">Select State</label>
-                <select class="form-control bannerinput input" name="state" id="state">
-                    <option value="" disabled selected>Select State</option>
-                    @foreach($states as $state)
-                        <option value="{{ $state }}">{{ $state }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-3 mb-2">
-                <label for="suburb" class="sm-text1 des-text">Select Region</label>
-                <select class="form-control bannerinput input" name="suburb" id="suburb">
-                    <option value="" disabled selected>Select Region</option>
-                </select>
-            </div>
-            <style>
-              .whitehighlight{
-                color: white;
-              }
-              .propertiespageamenities{
-                top:54rem;
-                left: 17rem;
-              }
-              @media (max-width:800px) {
-                .propertiespageamenities{
-                  top:186.2%;
-                left: 0.6rem;
-              }
-                
-              }
-             
-            </style>
-            
-            <div class="col-md-3 mb-2 d-flex">
-            <span class="sm-text mt-5 whitehighlight advance " onclick="funOpenadvance()">Advanced ::</span>
-            <div class="mx-3">
-                <label class="sm-text1 des-text">Search</label>
-                <button type="submit" class="btn-buttonyellow">Search</button>
-              </div>
-            </div>
-        </div>
-       
-    </div>
-</form>
-
-
-
-<section class="container rounded amenities propertiespageamenities  py-2">
-    <div class="row p-3" id="advanceitems">
-      <h2 class="md-text greenhighlight mx-2">amenities</h2>
-      <!-- Amenity Checkboxes -->
-      @foreach($amenities as $amenity)
-        <div class="d-flex col-md-2 pt-1">
-          <input type="checkbox" name="amenities[]" id="amenity-{{ $amenity->id }}" value="{{ $amenity->id }}"
-                 {{ in_array($amenity->id, request('amenities', [])) ? 'checked' : '' }} class="amenity-checkbox">
-          <label for="amenity-{{ $amenity->id }}" class="nameofthing">{{ $amenity->title }}</label>
-        </div>
+              </a>
       @endforeach
-    </div>
-  
-    <!-- Bedrooms, Bathrooms, Area, and Price Section -->
-    <div class="row mx-2 d-flex justify-content-between gap-1">
-      <div class="col-md-3">
-          <label for="bedrooms" class="sm-text">Bedrooms</label>
-          <select name="bedrooms" id="bedrooms" class="input bannerinput">
-              <option value="" selected>Beds Any</option>
-              @for ($i = 1; $i <= 10; $i++)
-                  <option value="{{ $i }}" {{ request('bedrooms') == $i ? 'selected' : '' }}>{{ $i }}</option>
-              @endfor
-          </select>
-      </div>
-      <div class="col-md-3">
-          <label for="bathrooms" class="sm-text">Bathrooms</label>
-          <select name="bathrooms" id="bathrooms" class="input bannerinput">
-              <option value="" selected>Baths Any</option>
-              @for ($i = 1; $i <= 10; $i++)
-                  <option value="{{ $i }}" {{ request('bathrooms') == $i ? 'selected' : '' }}>{{ $i }}</option>
-              @endfor
-          </select>
-      </div>
-      <div class="col-md-3">
-          <label for="area-range" class="md-text">Area (sq. ft.)</label>
-          <div id="area-slider" class="mt-2"></div>
-          <span id="area-range-display" class="sm-text d-block mt-2"></span>
-          <input type="hidden" name="min_area" id="min_area">
-          <input type="hidden" name="max_area" id="max_area">
-      </div>
-      <div class="col-md-3">
-          <label for="price-range" class="md-text">Price</label>
-          <div id="price-slider" class="mt-2 price-slider"></div>
-          <span id="price-range-display" class="sm-text d-block mt-2"></span>
-          <input type="hidden" name="min_price" id="min_price">
-          <input type="hidden" name="max_price" id="max_price">
-      </div>
-  </div>
-  
-  </section>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const amenitiesCheckboxes = document.querySelectorAll('.amenity-checkbox');
-    const searchForm = document.querySelector('form[action="{{ route('frontend.searching') }}"]');
-    
-    function updateSearch() {
-      const selectedAmenities = Array.from(amenitiesCheckboxes)
-        .filter(cb => cb.checked)
-        .map(cb => cb.value);
-  
-      searchForm.querySelectorAll('input[name="amenities[]"]').forEach(input => input.remove());
-  
-      selectedAmenities.forEach(amenityId => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'amenities[]';
-        input.value = amenityId;
-        searchForm.appendChild(input);
-      });
-  
-      ['bedrooms', 'bathrooms', 'min_area', 'max_area', 'min_price', 'max_price'].forEach(filterName => {
-        const filterElement = document.getElementById(filterName);
-        if (filterElement) {
-          const filterValue = filterElement.value;
-          searchForm.querySelector(`input[name="${filterName}"]`)?.remove();
-  
-          if (filterValue) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = filterName;
-            input.value = filterValue;
-            searchForm.appendChild(input);
-          }
-        }
-      });
-    }
-  
-    amenitiesCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', updateSearch);
-    });
-  
-    // Attach event listeners to all filters
-    ['bedrooms', 'bathrooms', 'min_area', 'max_area', 'min_price', 'max_price'].forEach(filterName => {
-      const filterElement = document.getElementById(filterName);
-      if (filterElement) {
-        filterElement.addEventListener('change', updateSearch);
-      }
-    });
-  
-    function funOpenadvance() {
-      const advanceItems = document.querySelector(".amenities");
-      if (!advanceItems) {
-        console.error("Element with class 'amenities' not found.");
-        return;
-      }
-      advanceItems.style.display = advanceItems.style.display === "none" ? "block" : "none";
-    }
-  
-    const advanceSearchButton = document.querySelector('.advance');
-    if (advanceSearchButton) {
-      advanceSearchButton.addEventListener('click', funOpenadvance);
-    }
-  
-    // Initialize Area Slider
-    $("#area-slider").slider({
-      range: true,
-      min: 0,
-      max: 10000,
-      values: [0, 10000],
-      slide: function(event, ui) {
-        updateAreaDisplay(ui.values[0], ui.values[1]);
-      },
-      change: updateSearch 
-    });
-  
-    function updateAreaDisplay(minArea, maxArea) {
-      $("#area-range-display").text(minArea.toLocaleString() + " - " + maxArea.toLocaleString() + " sq. ft.");
-      $("#min_area").val(minArea);
-      $("#max_area").val(maxArea);
-    }
-  
-    // Initialize the area display
-    updateAreaDisplay($("#area-slider").slider("values", 0), $("#area-slider").slider("values", 1));
-  
-    // Initialize Price Slider
-    $("#price-slider").slider({
-      range: true,
-      min: 0,
-      max: 1000000,
-      values: [0, 1000000],
-      slide: function(event, ui) {
-        updatePriceDisplay(ui.values[0], ui.values[1]);
-      },
-      change: updateSearch // Add this line to trigger updateSearch on slider change
-    });
-  
-    function updatePriceDisplay(minPrice, maxPrice) {
-      $("#price-range-display").text("$" + minPrice.toLocaleString() + " - $" + maxPrice.toLocaleString());
-      $("#min_price").val(minPrice);
-      $("#max_price").val(maxPrice);
-    }
-  
-    // Initialize the price display
-    updatePriceDisplay($("#price-slider").slider("values", 0), $("#price-slider").slider("values", 1));
-  
-    // Update hidden inputs when form is submitted
-    searchForm.addEventListener('submit', function(e) {
-      updateSearch(); // Ensure all current values are included
-    });
-  });
-  </script>
-  
-
-<script>
-    $(document).ready(function() {
-      $('#category_id').change(function() {
-        var categoryId = $(this).val();
-        if (categoryId) {
-          $.ajax({
-            url: '/get-subcategories/' + categoryId,
-            type: 'GET',
-            success: function(data) {
-              $('#subcategory_id').empty();
-              $('#subcategory_id').append('<option value="" disabled selected>Select Subcategory</option>');
-              $.each(data, function(key, value) {
-                $('#subcategory_id').append('<option value="' + value.id + '">' + value.title + '</option>');
-              });
-            }
-          });
-        } else {
-          $('#subcategory_id').empty();
-          $('#subcategory_id').append('<option value="" disabled selected>Select Subcategory</option>');
-        }
-      });
-    
-      $('#state').change(function() {
-        var state = $(this).val();
-        if (state) {
-          $.ajax({
-            url: '/get-suburbs/' + state,
-            type: 'GET',
-            success: function(data) {
-              $('#suburb').empty();
-              $('#suburb').append('<option value="" disabled selected>Select Region</option>');
-              $.each(data, function(key, value) {
-                $('#suburb').append('<option value="' + value + '">' + value + '</option>');
-              });
-            }
-          });
-        } else {
-          $('#suburb').empty();
-          $('#suburb').append('<option value="" disabled selected>Select Region</option>');
-        }
-      });
-    });
-    </script>
-   
-
-<!-- nextpage section -->
-
-<section class="container-fluid">
-    <div class="container">
-        <div class="row  nextpage ">
-
-
-
-            <ul class="nextui d-flex gap-1 justify-content-center align-content-center flex-wrap">
-                <li class="nextli next-button" onclick="changepage(this)"><a href="#" class="md-text1">1</a></li>
-                <li class="nextli" onclick="changepage(this)"><a href="#" class="md-text1">2</a></li>
-                <li class="nextli" onclick="changepage(this)"><a href="#" class="md-text1">3</a></li>
-                <li class="nextli" onclick="changepage(this)"><a href="#" class="md-text1">4</a></li>
-                <li class="nextli" onclick="changepage(this)"><a href="#" class="md-text1">5</a></li>
-            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-@endsection 
+<section class="container-fluid sectiongap">
+  <div class="container">
+    <div class="title">
+      <div class="lg-texts ">product <span class="greenhighlight">deal</span> </div>
+      <div class="xs-text-md greenhighlight ">Don't wait. The time will never be just right.</div>
+    </div>
+    <div class="row py-2 fcc flex-wrap gap-md-0 gap-1">
+      <div class="col-md-3 col-5">
+        <div class=" customcard row col-md-12 p-2 rounded">
+          <div class="card-body ">
+            <div class="imgf d-flex justify-content-center py-2">
+              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
+            </div>
+            <div class="d-flex justify-content-between mx-1">
+              <p class="xs-text needhide">type</p>
+              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+              </p>
+
+            </div>
+            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
+            <div class="d-flex justify-content-between mx-1 ">
+              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
+              <p class="xs-text needhide">500 ml</p>
+            </div>
+            <div class="d-flex gap-2  py-2">
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-5 mb-2">
+        <div class="row"></div>
+        <div class=" customcard row col-md-12 p-2 rounded">
+          <div class="card-body ">
+            <div class="imgf d-flex justify-content-center py-2">
+              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
+            </div>
+            <div class="d-flex justify-content-between mx-1">
+              <p class="xs-text needhide">type</p>
+              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+              </p>
+
+            </div>
+            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
+            <div class="d-flex justify-content-between mx-1 ">
+              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
+              <p class="xs-text needhide">500 ml</p>
+
+            </div>
+            <div class="d-flex gap-2  py-2">
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-5 mb-2">
+        <div class=" customcard row col-md-12 p-2 rounded">
+          <div class="card-body ">
+            <div class="imgf d-flex justify-content-center py-2">
+              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
+            </div>
+            <div class="d-flex justify-content-between mx-1">
+              <p class="xs-text">type</p>
+              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+              </p>
+
+            </div>
+            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
+            <div class="d-flex justify-content-between mx-1 ">
+              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
+              <p class="xs-text">500 ml</p>
+            </div>
+            <div class="d-flex gap-2  py-2">
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-5 mb-2">
+        <div class=" customcard row col-md-12 p-2 rounded">
+          <div class="card-body ">
+            <div class="imgf d-flex justify-content-center py-2">
+              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
+            </div>
+            <div class="d-flex justify-content-between mx-1">
+              <p class="xs-text">type</p>
+              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+              </p>
+
+            </div>
+            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
+            <div class="d-flex justify-content-between mx-1 ">
+              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
+              <p class="xs-text">500 ml</p>
+            </div>
+            <div class="d-flex gap-2  py-2">
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+              <i class="fa-regular fa-heart customicon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- explore -->
+<section class="container-fluid advertisement py-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center gap-3">
+
+      <div class="col-md-6 order-2 order-md-1">
+        <div class="xs-text-bd yellowhighlight">yak churpi</div>
+        <div class="lg-texts whitehighlight ">explore categories</div>
+        <p class="xs-text whitehighlight my-2">Vegetarian,farm grocery store vector illustration, green white
+          color.
+          Find Vegetables Background stock images in HD and millions of other royalty-free stock photos,
+          illustrations and vectors in the</p>
+        <div class="adv-button-collection d-flex gap-3">
+          <button class="btn-buttonblack mt-2">Shop Now</button>
+          <button class="btn-buttonwhite mt-2">Shop Now</button>
+        </div>
+      </div>
+      <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class=" col-md-4 lgimage order-md-2 order-1">
+
+    </div>
+
+  </div>
+</section>
 
 
 <script>
-  function funsearchingon() {
-    const hiddenformdata = document.querySelector(".hiddenform");
+  function buyNowFun() {
+    const getSingleBuy = document.querySelector(".hidesinglebuy");
 
-    // Toggle the display style
-    if (hiddenformdata.style.display === "none" || hiddenformdata.style.display === "") {
-      hiddenformdata.style.display = "block";
+    // Toggle the display property
+    if (getSingleBuy.style.display === "none") {
+      getSingleBuy.style.display = "block";
     } else {
-      hiddenformdata.style.display = "none";
+      getSingleBuy.style.display = "none";
     }
   }
+  function closeSinglebuy(){
+    const getSingleBuy = document.querySelector(".hidesinglebuy");
+    if(getSingleBuy.style.display ==="block"){
+      getSingleBuy.style.display = "none";
 
-  function changepage(clickedElement) {
-    // Remove 'next-button' class from all list items
-    const allButtons = document.querySelectorAll('.nextli');
-    allButtons.forEach(button => button.classList.remove('next-button'));
+    }
+    else{
+      getSingleBuy.style.display = "block";
 
-    // Add 'next-button' class to the clicked list item
-    clickedElement.classList.add('next-button');
+    }
+
   }
-
 </script>
+
+
+
+
+@endsection

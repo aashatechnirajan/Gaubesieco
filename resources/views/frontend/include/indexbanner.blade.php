@@ -18,9 +18,6 @@
     top: 6.5rem;
    
 }
-
- </style>
- <style>
   .lg-text span {
     transform: translateY(20px);
     transition: transform 0.7s ease; 
@@ -34,7 +31,40 @@
     transform: translateY(0); 
     opacity: 1; 
   }
+  @media (max-width:600px) {
+ .carousel-control-prev{
+  top:12rem;
+ }
+ .carousel-control-next{
+  top:12rem;
+
+ }
+
+ .carousel-inner{
+  height: 28vh;
+
+ }
+
+
+
+
+}
+@media (max-width:340px) {
+
+ .carousel-inner{
+  height: 30vh;
+
+ }
+
+
+
+
+}
+
+
+
 </style>
+
 
 <section class="container-fluid p-0 m-0 herosection">
   <div class="container py-5">
@@ -43,13 +73,13 @@
         <div class="carousel-inner mb-2">
           @foreach ($services as $index => $property)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-              <div class="d-flex justify-content-center align-items-center gap-3">
+              <div class="d-flex justify-content-center align-items-center gap-4">
                 <div class="d-flex flex-column col-md-6 "> <!-- Center text -->
                   <p class="xs-text p-0 m-0">{{$property->title}}</p>   
-                  <p class="lg-texts pb-2" id="description-{{$index}}">{{$property->description}}</p>
+                  <p class="lg-texts extralg-texts pb-2" id="description-{{$index}}">{{$property->description}}</p>
                   <button class="btn-buttonoutline mt-2">Shop Now</button>
                 </div>
-                <img src="{{asset("image/house2.png")}}" alt="lgimage" class="col-md-5"> <!-- Make sure this image is responsive -->
+                <img src="{{asset("image/house2.png")}}" alt="" class="col-md-4 lgimage indexbannerimage"> <!-- Make sure this image is responsive -->
               </div>
             </div>
           @endforeach

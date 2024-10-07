@@ -97,12 +97,13 @@
   .top-counter {
     position: absolute;
     padding: 0 6px;
-    top:0.1rem;
+    top: 0.1rem;
     right: 0rem;
     background: var(--pure-white);
     border-radius: 20px;
     font-size: 12px;
   }
+
   .forrelative {
     position: relative;
   }
@@ -165,7 +166,7 @@
             <a class="nav-link" href="#">home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">shop</a>
+            <a class="nav-link" href="{{ route('properties') }}">shop</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -201,10 +202,10 @@
           <i class="fa-regular fa-user customicon forhide"></i>
         </div>
         <div class="forhide">
-          <div class="d-flex align-items-center forrelative ">
+          <a href="{{route("favourite")}}" class="d-flex align-items-center forrelative ">
             <i class="fa-solid fa-cart-plus customicon"></i>
             <p class="sm-text1 top-counter">9</p>
-          </div>
+          </a>
         </div>
         <div class="d-flex align-items-center forrelative">
           <i class="fa-regular fa-heart customicon"></i>
