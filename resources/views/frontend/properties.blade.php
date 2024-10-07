@@ -173,7 +173,6 @@
 
   }
 </style>
-
 <section class="container-fluid hidesinglebuy">
   <div class="container fcc ">
   <i class="fa-solid fa-xmark customicon" onclick="closeSinglebuy()"></i>
