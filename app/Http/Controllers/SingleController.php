@@ -89,6 +89,12 @@ class SingleController extends Controller
         $categories=Category::latest()->get();
         return view('frontend.searching', compact('properties','categories'));
     }
+
+
+
+
+
+
     
     public function properties(Request $request, $categoryId = null)
 {
@@ -110,14 +116,48 @@ class SingleController extends Controller
         return view('frontend.properties', compact('properties', 'categories', 'states', 'subcategories'));
     }
 
+
+
+
+
+
+
     public function render_favourite()
     {
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            // Redirect to the login page if the user is not logged in
+            return redirect()->route('login')->with('error', 'You must be logged in to view your favorites.');
+        }
     
-    $userEmail = Auth::user()->email;
-    $favoritePropertyIds = Favorites::where('email', $userEmail)->pluck('properties_id');
-    $properties = Property::whereIn('id', $favoritePropertyIds)->latest()->get();
-    $categories = Category::latest()->get();
-    return view('frontend.favourite', compact('properties', 'categories'));
+        // Get the authenticated user's email
+        $userEmail = Auth::user()->email;
+    
+        // Fetch favorite property IDs associated with the user's email
+        $favoritePropertyIds = Favorites::where('email', $userEmail)->pluck('properties_id');
+    
+        // Fetch properties based on the favorite IDs
+        $properties = Property::whereIn('id', $favoritePropertyIds)->latest()->get();
+    
+        // Fetch all categories
+        $categories = Category::latest()->get();
+    
+        // Return the view with properties and categories
+        return view('frontend.favourite', compact('properties', 'categories'));
     }
+
+
+    public function render_cart(){
+        $properties = Property::latest()->get();
+        return view("frontend.cart" , compact("properties"));
+    }
+    
+    public function render_account() {
+        // $properties = Property::latest()->get();
+        return view("frontend.account");
+    }
+    
+
+    
 
 }

@@ -1,10 +1,16 @@
 <style>
 
+footer{
+  background:var(--extra-grey);
+
+
+}
 
   footer li a {
     font-size: 16px !important;
     font-weight: var(--weight400) !important;
     color: var(--text-gray) !important;
+ 
 
   }
 
@@ -102,7 +108,7 @@
 
 
 
-<footer class="container-fluid mb-3 mt-2">
+<footer class="container-fluid  mt-2 py-4">
   <div class="container mb-2 ">
     <div class="row ">
       <div class="col-md-4 my-1 ">
