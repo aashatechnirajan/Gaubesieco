@@ -77,10 +77,10 @@
                     Offer Price Rs.900</p>
                 <div class="d-flex gap-2 py-3">
                     <div class="">
-                  <p class="xs-text-bd whitehighlight p-0 m-0">Vegetarian</p>
+                  <p class="sm-text-bd whitehighlight p-0 m-0">Vegetarian</p>
                     <p class="xs-text whitehighlight my-2">Vegetarian,farm grocery store vector illustration, green white
                         color.</p>
-                        <button class="btn-buttonwhite p-0 m-0 ">Shop Now</button>
+                        <button class="btn-buttonwhite p-0 m-0  mt-1">Shop Now</button>
                         </div>
                     <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class=" mdimage-lg col-md-4">
                 </div>
@@ -93,10 +93,10 @@
                     Offer Price Rs.900</p>
                 <div class="d-flex gap-2 py-3">
                     <div class="">
-                  <p class="xs-text-bd whitehighlight p-0 m-0">Vegetarian</p>
+                  <p class="sm-text-bd whitehighlight p-0 m-0">Vegetarian</p>
                     <p class="xs-text whitehighlight my-2">Vegetarian,farm grocery store vector illustration, green white
                         color.</p>
-                        <button class="btn-buttonwhite p-0 m-0 ">Shop Now</button>
+                        <button class="btn-buttonwhite p-0 m-0  mt-1">Shop Now</button>
                         </div>
                     <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class=" mdimage-lg col-md-4">
                 </div>
@@ -108,10 +108,10 @@
                     Offer Price Rs.900</p>
                 <div class="d-flex gap-2 py-3">
                     <div class="">
-                  <p class="xs-text-bd whitehighlight p-0 m-0">Vegetarian</p>
+                  <p class="sm-text-bd whitehighlight p-0 m-0">Vegetarian</p>
                     <p class="xs-text whitehighlight my-2">Vegetarian,farm grocery store vector illustration, green white
                         color.</p>
-                        <button class="btn-buttonwhite p-0 m-0 ">Shop Now</button>
+                        <button class="btn-buttonwhite p-0 m-0 mt-1">Shop Now</button>
                         </div>
                     <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class=" mdimage-lg col-md-4">
                 </div>

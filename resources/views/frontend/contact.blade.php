@@ -1,5 +1,7 @@
 @extends("frontend.layouts.master")
 @section("content")
+
+<!-- same for contact and blog page but used the style of contact -->
 <style>
   .blog_contact_section {
     position: relative;
@@ -17,15 +19,34 @@
 
 
 
-  .blog_contact_heroimage {
+  .blog_contact_heroimage_container {
+    position: relative; 
     width: 99%;
-    height: 70vh;
+    height: 70vh; 
+}
+
+.blog_contact_heroimage {
+    width:100%;
+    height: 100%; 
     object-fit: cover;
     position: relative;
-    bottom:1.2rem;
+    bottom: 1.2rem;
+}
 
-  }
-
+.blog_contact_heroimage_container::before {
+  position: absolute;
+  width: 98.5%;
+  height: 70vh; 
+    content: " ";
+    display: block;
+    top:-1.2rem;
+    left:0.7rem;
+    right: 0;
+    bottom:0rem;
+    background-color:rgba(150, 150, 150, 0.2);
+    z-index: 100;
+    height: 100%; 
+}
 
   .greenbackground {
     background: var(--off-green);
@@ -63,6 +84,10 @@
     height:40vh;
  
   }
+  .blog_contact_heroimage_container::before {
+    top:-0.8rem;
+  
+}
 
   }
 
@@ -75,7 +100,9 @@
   <div class="container">
     <div class="row blog_contact_section">
       <h1 class="extra-lg-lg text-center pb-0 mb-0">Contact</h1>
-      <img src="{{asset("image/house1.png")}}" alt="" class="blog_contact_heroimage p-0 m-0">
+      <div class="blog_contact_heroimage_container">
+    <img src="{{asset('image/house1.png')}}" alt="" class="blog_contact_heroimage p-0 m-0">
+</div>
     </div>
 </section>
 
@@ -88,7 +115,7 @@
       @foreach ($siteSettings as $siteSetting)
 
 
-      <div class="col-md-3 greenbackground d-flex flex-column align-items-center">
+      <div class="col-md-3 greenbackground d-flex flex-column align-items-center rounded py-3">
       <div class="d-flex align-items-center gap-2 ">
         <i class="fa-solid fa-location-dot iconslarge"></i>
         <h2 class="md-text whitehighlight py-2">Office Address</h2>
@@ -103,7 +130,7 @@
       <p class="sm-text whitehighlight "> North road 435673Kth street</p>
       </div>
 
-      <div class="col-md-3 greenbackground d-flex flex-column align-items-center">
+      <div class="col-md-3 greenbackground d-flex flex-column align-items-center rounded py-3">
       <div class="d-flex align-items-center gap-2 ">
         <i class="fa-solid fa-envelope  iconslarge"></i>
         <h2 class="md-text whitehighlight py-2">Office Email</h2>
@@ -119,7 +146,7 @@
       </div>
 
 
-      <div class="col-md-3 greenbackground d-flex flex-column align-items-center">
+      <div class="col-md-3 greenbackground d-flex flex-column align-items-center rounded py-3">
       <div class="d-flex align-items-center gap-2 ">
         <i class="fa-solid fa-phone iconslarge"></i>
         <h2 class="md-text whitehighlight py-2">Office Contact</h2>
@@ -147,7 +174,7 @@
 
 <section class="container-fluid  py-4 ">
   <div class="row d-flex  justify-content-center align-items-center mx-2">
-    <div class="col-md-4 greenbackground px-4 m-2 order-md-1 order-2">
+    <div class="col-md-4 greenbackground px-4 m-2 order-md-1 order-2 rounded py-3">
       <div class="d-flex flex-column gap-2">
         <p class="">Are you ready to enhance your well-being? Explore our carefully curated selection of products
           designed to promote relaxation and inner peace..</p>

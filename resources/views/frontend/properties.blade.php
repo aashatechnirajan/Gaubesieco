@@ -145,6 +145,10 @@
     border-radius:var(--radius8);
     cursor: pointer; 
 }
+.makeactive{
+  background:var(--pure-black)!important;
+  color: var(--pure-white);
+}
 
   .showsinglebuy {
     background: var(--green);
@@ -165,11 +169,10 @@
 .fa-xmark {
 
     top:25%; /* Adjust to a percentage for responsive design */
-    right:3%; 
-
-
+    right:3%;
  
 }
+
 
   }
 </style>
@@ -287,9 +290,11 @@
                     <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
                     <button class="btn-xsbutton p-0 m-0 ">+</button>
                   </div> -->
+                  <button class="btn-buttonoutline-sm p-0 m-0 ">favourite</button>
                   <button class="btn-buttonoutline-sm p-0 m-0 ">add cart</button>
                   <button class="btn-buttonoutline-sm p-0 m-0 " onclick="buyNowFun()">Buy Now</button>
-                  <i class="fa-regular fa-heart customicon"></i>
+                 
+                
                 </div>
               </div>
             </div>
@@ -299,7 +304,7 @@
         <div class="col-md-12 descriptionborder p-4 my-2 ">
           <div class="row mx-2">
             <div class="col-md-6 gap-3 d-flex">
-              <button class="btn-buttonoutline-sm p-0 m-0 ">description</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 makeactive ">description</button>
               <button class="btn-buttonoutline-sm p-0 m-0 ">add info</button>
               <button class="btn-buttonoutline-sm p-0 m-0 ">Review (4)</button>
             </div>

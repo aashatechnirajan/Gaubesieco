@@ -5,16 +5,16 @@
 <style>
     .descard {
         background: white;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
 
     .des-button {
         color: white;
         background: var(--off-green);
         border-radius: var(--radius4);
-        font-weight:500;
+        font-weight: 500;
         padding: 1rem 0;
-        font-size:18px;
+        font-size: 17px;
         text-transform: capitalize;
         font-family: var(--font-family);
 
@@ -40,75 +40,107 @@
     }
 
     .heightcontroll {
-        width:100%;
-        height:12vh;
+        width: 100%;
+        height: 12vh;
         object-fit: cover;
         border-radius: var(--radius4) !important;
     }
-    @media (max-width:400px){
+
+    @media (max-width:400px) {
         .des-button {
-        font-size:14px;
-        font-weight:400;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
     }
 
+    .forpadding {
+        margin-left: 1px;
     }
 </style>
 
+
+
+
+
 <section class="container-fluid py-3">
-    <div class="container">
-        <div class="row m-2 p-0">
-            <div class="col-md-8 col-12 row gap-2 order-md-1 order-2">
-                <div class="col-md-12 row descard gap-2 py-3 rounded">
-                    <div class="col-md-2 col-4 des-button fcc ">
-                        order
-                    </div>
-                    <div class="col-md-9 col-7">
-                        <p class="sm-text">here your order </p>
+    <div class="container ">
+        <div class="row  p-0 gap-4 forpadding ">
+            <div class="col-md-8 row fbc gap-3   p-0 m-0  order-md-1 order-2">
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                    <a href='{{route("chat")}}' class="col-1 p-0 m-0">
+                        <i class="fa-solid fa-box customicon_blue"></i>
+                    </a>
+                    <div class="col-5">
+                        <p class="sm-text">order </p>
                         <p class="xs-text">items</p>
                     </div>
-
                 </div>
 
-                <div class="col-md-12 row descard gap-2 py-3 rounded">
-                    <div class="col-md-2 col-4 des-button fcc ">
-                        cart
-                    </div>
-                    <div class="col-md-9 col-7 ">
-                        <p class="sm-text">here your order </p>
+
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                    <a href='{{route("chat")}}' class="col-1 p-0 m-0">
+                        <i class="fa-regular fa-message customicon"></i>
+                    </a>
+                    <div class="col-5">
+                        <p class="sm-text">chat </p>
                         <p class="xs-text">items</p>
                     </div>
-
                 </div>
-                <div class="col-md-12 row descard gap-2 py-3 rounded">
-                    <div class="col-md-2 col-4 des-button fcc text-center ">
-                        favourite
-                    </div>
-                    <div class="col-md-9 col-7 ">
-                        <p class="sm-text">here your order </p>
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                <a href='#' class="col-1 p-0 m-0">
+                        <i class="fa-solid fa-truck customicon_pink"></i>
+         </a>
+                    <div class="col-5">
+                        <p class="sm-text"> Delivery </p>
                         <p class="xs-text">items</p>
                     </div>
-
                 </div>
-                <div class="col-md-12 row descard gap-2 py-3 rounded">
-                    <div class="col-md-2 col-4 des-button fcc text-center ">
-                        help center
-                    </div>
-                    <div class="col-md-9 col-7 ">
-                        <p class="sm-text">here your order </p>
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                    <a href='#' class="col-1 p-0 m-0">
+                        <i class="fa-brands fa-creative-commons-nd customicon_yellow"></i>
+                    </a>
+                    <div class="col-5">
+                        <p class="sm-text">activities </p>
                         <p class="xs-text">items</p>
                     </div>
-
                 </div>
+
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                <a href='#' class="col-1 p-0 m-0">
+                        <i class="fa-solid fa-volume-high customicon_yellow"></i>
+                    </a>
+                    <div class="col-5">
+                        <p class="sm-text">promos </p>
+                        <p class="xs-text">items</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 row descard  py-3 rounded gap-3">
+                <a href='#' class="col-1 p-0 m-0">
+                        <i class="fa-solid fa-handshake-angle customicon_blue"></i>
+                    </a>
+                    <div class="col-10">
+                        <p class="sm-text"> help center </p>
+                        <p class="xs-text">items</p>
+                    </div>
+                </div>
+
+
+
+
+
+
 
             </div>
-            <div class="col-md-4 order-md-2 order-1 mb-4">
+            <div class="col-md-3 order-md-2 order-1 ">
                 <div class="row ">
                     <div class="col-4">
                         <img src="{{asset("image/expl.png")}}" alt="" class="col-12 rounded heightcontroll">
 
                     </div>
 
-                    <div class="col-8 row ">
+                    <div class="col-8 row">
                         <div class="col-12 sm-text">Nirajan Sigdel</div>
                         <div class="col-12 m-0 p-0 mt-1 ">
                             <button class="auth_button rounded">login </button>

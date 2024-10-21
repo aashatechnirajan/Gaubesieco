@@ -157,6 +157,10 @@ class SingleController extends Controller
         return view("frontend.account");
     }
     
+    public function render_chat(){
+        return view("frontend.chat");
+    }
+    
 
     
 

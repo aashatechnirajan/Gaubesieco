@@ -82,7 +82,7 @@ a {
     background: none;
     text-transform: capitalize;
     text-align: center;
-    transition: 500ms ease-in-out;
+    transition: 800ms ease-in;
     letter-spacing: 1px;
     cursor: pointer;
     height: calc(8px + 4vh);
@@ -91,6 +91,11 @@ a {
     font-weight: var(--weight400);
     border-radius: var(--radius8);
     font-family: var(--font-family);
+}
+.btn-buttonoutline-sm:hover{
+    color: var(--pure-white);
+    background: var(--pure-black);
+
 }
 
 /* button black while hover */
@@ -151,7 +156,6 @@ a {
 }
 
 @media (max-width: 700px) {
-
     .btn-buttonoutline,
     .btn-buttonblack,
     .btn-buttonwhite {
@@ -339,21 +343,40 @@ input::placeholder {
 }
 
 /* icons size */
-
-.customicon {
-    font-size: 20px;
-    height: calc(10px + 4.6vh);
-    width: calc(4px + 2.6vw);
-    background: var(--off-green);
+.customicon,
+.customicon_yellow ,.customicon_pink ,.customicon_blue {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: var(--radius100);
     color: var(--pure-white);
+    font-size: 20px;
+    height: calc(10px + 4.6vh);
+    width: calc(4px + 2.6vw);
+}
+
+.customicon {
+    background: var(--off-green);
+}
+.customicon_yellow {
+    background: var(--yellow);
+}
+.customicon_blue {
+
+    background-color: #007bb6;
+}
+.customicon_pink {
+    background-color: rgba(255, 0, 116, 0.75);
+}
+
+.customicon,
+.customicon_yellow ,.customicon_pink ,.customicon_blue:hover{
+    cursor:pointer
 }
 
 @media (max-width: 992px) {
-    .customicon {
+    .customicon,
+    .customicon_yellow,.customicon_blue ,.customicon_pink {
         font-size: 20px;
         height: calc(10px + 4.6vh);
         width: calc(30px + 2.6vw);
@@ -483,10 +506,9 @@ input::placeholder {
     margin: 3rem 0;
 }
 
-
-
 .fa-facebook {
     background-color: #0866ff;
+  
     color: white;
 }
 
@@ -532,5 +554,23 @@ input::placeholder {
     height: 36px;
 }
 
-
 /* -----------------------------starting of the page---------------------------------------------------------------- */
+
+.chatleft-items {
+    background: rgb(244, 244, 244);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    height:calc(300px + 10vh);
+
+
+}
+
+@media (max-width:768px){
+    .chatleft-items{
+        display: flex !important;
+        justify-content: space-between;
+        height: auto;
+        
+
+    }
+
+}

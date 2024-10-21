@@ -9,6 +9,7 @@
 @include("frontend.include.blog")
 
 @include("frontend.include.landproperties")
+@include("frontend.include.categories")
 
 {{--advantage --}}
 <!-- @include("frontend.include.advantage") -->

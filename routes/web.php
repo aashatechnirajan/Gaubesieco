@@ -222,6 +222,7 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
    Route::get('/favourite', [SingleController::class, 'render_favourite'])->name('favourite');
    Route::get('/cart', action: [SingleController::class, 'render_cart'])->name('cart');
    Route::get('/account', [SingleController::class, 'render_account'])->name('account');
+   Route::get('/chat' ,[SingleController::class ,"render_chat"])->name('chat');
 
 
    

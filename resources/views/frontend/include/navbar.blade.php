@@ -117,9 +117,10 @@
     padding: 0 6px;
     top: 0.1rem;
     right: 0rem;
-    background: var(--pure-white);
+    background: var(--yellow);
     border-radius: 20px;
     font-size: 12px;
+    color: var(--pure-white);
   }
 
   .forrelative {

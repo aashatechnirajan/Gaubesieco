@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 @section("content")
+
+
+
+<!-- same for contact and blog page but used the style of contact -->
 <style>
   .blog_contact_section {
     position: relative;
@@ -17,13 +21,36 @@
   }
 
 
-  .blog_contact_heroimage {
+  .blog_contact_heroimage_container {
+    position: relative; 
     width: 99%;
-    height: 70vh;
+    height: 70vh; 
+}
+
+.blog_contact_heroimage {
+    width:100%;
+    height: 100%; 
     object-fit: cover;
     position: relative;
-    bottom:1.2rem;
-  }
+    bottom: 1.2rem;
+}
+
+.blog_contact_heroimage_container::before {
+  position: absolute;
+  width: 98.5%;
+  height: 70vh; 
+    content: " ";
+    display: block;
+    top:-1.2rem;
+    left:0.7rem;
+    right: 0;
+    bottom:0rem;
+    background-color:rgba(150, 150, 150, 0.2);
+    z-index: 100;
+    height: 100%; 
+}
+
+
 
   @media (max-width: 700px) {
     .extra-lg-lg {
@@ -34,6 +61,10 @@
     bottom:0.8rem;
 
   }
+  .blog_contact_heroimage_container::before {
+    top:-0.8rem;
+  
+}
 
 
   }
@@ -43,7 +74,10 @@
   <div class="container">
     <div class="row blog_contact_section">
       <h1 class="extra-lg-lg text-center pb-0 mb-0">Blogs</h1>
-      <img src="{{asset("image/house1.png")}}" alt="" class="blog_contact_heroimage p-0 m-0">
+      <div class="blog_contact_heroimage_container">
+    <img src="{{asset('image/house1.png')}}" alt="" class="blog_contact_heroimage p-0 m-0">
+</div>
+
     </div>
 </section>
 
