@@ -54,20 +54,20 @@
 <section class="container-fluid py-3">
     <div class="container">
         <div class="row  p-0 gap-4">
-            <div class="col-md-1 chatleft-items py-md-4 py-2 gap-2 rounded">
+            <div class="col-md-1  left-items py-md-4 py-2 gap-4 rounded">
                 <div class="d-flex align-items-center flex-column">
-                    <i class="fa-regular fa-message customicon"></i>
+                    <i class="fa-regular fa-message customicon "></i>
                     <p class="xs-text">chat</p>
                 </div>
-                <div class="d-flex align-items-center flex-column">
+                <div class="d-flex align-items-center flex-column my-md-3">
                     <i class="fa-solid fa-box customicon_blue"></i>
-                    <p class="xs-text">order</p>
+                    <p class="xs-text ">order</p>
                 </div>
-                <div class="d-flex align-items-center flex-column">
+                <div class="d-flex align-items-center flex-column my-md-3">
                     <i class="fa-brands fa-creative-commons-nd customicon_yellow"></i>
                     <p class="xs-text">Activities</p>
                 </div>
-                <div class="d-flex align-items-center flex-column">
+                <div class="d-flex align-items-center flex-column my-md-3">
                     <i class="fa-solid fa-truck customicon_pink"></i>
                     <p class="xs-text">Delivery</p>
                 </div>

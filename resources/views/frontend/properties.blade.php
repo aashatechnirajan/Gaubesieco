@@ -1,6 +1,6 @@
 @extends("frontend.layouts.master")
 
-
+<!-- css are same of dayofdeal and properrties and landproperties -->
 
 <style>
   .advertisement {
@@ -114,6 +114,13 @@
     border-radius: var(--radius4);
   }
 </style>
+
+
+
+
+
+
+
 @section("content")
 <section class="container-fluid routingname ">
   <div class="container py-3 ">
@@ -124,31 +131,38 @@
 <style>
   .hidesinglebuy {
     background: var(--border-color);
-    min-height: 100vh; /* Minimum height of the viewport */
-    width: 100%; /* Full width */
-    position: fixed; /* Fixed positioning to cover entire viewport */
-    top: 0; 
-    left: 0; /* Align to the left */
-    z-index: 20; 
+    min-height: 100vh;
+    width:55%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 20;
     display: none;
-   
-
-}
-
+  }
 
   .fa-xmark {
-    position: absolute; 
-    top:22%; 
-    right:10%; 
-    z-index:20; 
+    position: absolute;
+    top:20%;
+    right:1.5%;
+    z-index: 20;
     background: black;
-    border-radius:var(--radius8);
-    cursor: pointer; 
-}
-.makeactive{
-  background:var(--pure-black)!important;
-  color: var(--pure-white);
-}
+    border-radius: var(--radius8);
+    cursor: pointer;
+  }
+
+
+
+  @media (max-width:770px) {
+    .hidesinglebuy {
+    width:92%;
+  }
+    
+  }
+
+  .makeactive {
+    background: var(--pure-black) !important;
+    color: var(--pure-white);
+  }
 
   .showsinglebuy {
     background: var(--green);
@@ -158,27 +172,40 @@
     padding: 0 1rem;
     border-radius: var(--radius4);
   }
-  @media (max-width:700px){
+          #additional , #review{
+            display: none;
+          }
+  
+  @media (max-width:700px) {
     .hidesinglebuy {
-    top:-3.5rem; 
-    left: 0;
-    bottom:20rem;
+      top: -3.5rem;
+      left: 0;
+      bottom: 20rem;
 
 
-}
-.fa-xmark {
+    }
 
-    top:25%; /* Adjust to a percentage for responsive design */
-    right:3%;
- 
-}
+    .fa-xmark {
+
+      top: 24%;
+      /* Adjust to a percentage for responsive design */
+      right: 3%;
+
+    }
+
+    #additional,
+    #review {
+      display: none;
+    }
 
 
   }
 </style>
+
+<!--open after click the buy button  -->
 <section class="container-fluid hidesinglebuy">
   <div class="container fcc ">
-  <i class="fa-solid fa-xmark customicon" onclick="closeSinglebuy()"></i>
+    <i class="fa-solid fa-xmark customicon" onclick="closeSinglebuy()"></i>
     <div class="row  py-3 my-1  showsinglebuy fcc gap-2">
       <div class="col-md-8">
         <div class="row  d-flex align-items-center border rounded shadow-sm bg-light py-2">
@@ -194,11 +221,8 @@
             <button class="btn-xsbutton p-0 m-0 ">+</button>
           </div>
           <p class="xs-text-bd  yellowhighlight m-md-0 m-2 col-md-2 ">Rs 30000</p>
-
         </div>
-
       </div>
-
       <div class="col-md-3  border rounded shadow-sm bg-light">
         <div class="row col-md-12 green p-3 gap-2">
           <p class=" topic-collection md-text p-1">order summary </p>
@@ -207,16 +231,12 @@
           <button class="btn-buttonoutline-sm p-0 m-0 ">Buy Now</button>
         </div>
       </div>
-
     </div>
-
-
   </div>
-
 </section>
 
 
-
+<!-- start of single product -->
 <section class="container-fluid singleprojectpage py-2">
   <div class="container">
     <div class="row gap-5">
@@ -238,11 +258,9 @@
               <!-- Property Details -->
               <div class=" col-md-7 d-flex flex-column justify-content-between ">
                 <div class="d-flex gap-1">
-                <button class="btn-buttonoutline-sm findstockbutton ">available</button>
-                <button class="btn-buttonoutline-sm findstockbutton ">stock out</button>
-
+                  <button class="btn-buttonoutline-sm findstockbutton ">available</button>
+                  <button class="btn-buttonoutline-sm findstockbutton ">stock out</button>
                 </div>
-               
                 <h3 class="sm-text py-2">People just don't do it anymor</h3>
                 <h3 class="xs-text pb-2">Dressing up. People just don't do it anymore. We have to change that. Give me
                   time and
@@ -293,30 +311,43 @@
                   <button class="btn-buttonoutline-sm p-0 m-0 ">favourite</button>
                   <button class="btn-buttonoutline-sm p-0 m-0 ">add cart</button>
                   <button class="btn-buttonoutline-sm p-0 m-0 " onclick="buyNowFun()">Buy Now</button>
-                 
-                
                 </div>
               </div>
             </div>
           </div>
         </div>
+      
         <!-- Overview and Description -->
         <div class="col-md-12 descriptionborder p-4 my-2 ">
           <div class="row mx-2">
             <div class="col-md-6 gap-3 d-flex">
-              <button class="btn-buttonoutline-sm p-0 m-0 makeactive ">description</button>
-              <button class="btn-buttonoutline-sm p-0 m-0 ">add info</button>
-              <button class="btn-buttonoutline-sm p-0 m-0 ">Review (4)</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 changer makeactive " data-id="description"
+                onclick="callToggle(this)">description</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 changer" data-id="additional" onclick="callToggle(this)">add
+                info</button>
+              <button class="btn-buttonoutline-sm p-0 m-0 changer " data-id="review" onclick="callToggle(this)">Review
+                (4)</button>
             </div>
-            <p class="xs-text py-2 ">
+            <p class="xs-text py-2 " id="description">
               Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal
+              goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop
+              tightly neurotic hungrily some and dear furiously this apart.Spluttered narrowly yikes left
+            </p>
+            <p class="xs-text py-2 " id="additional">
+              additional Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off
+              far quetzal
+              goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop
+              tightly neurotic hungrily some and dear furiously this apart.Spluttered narrowly yikes left
+            </p>
+            <p class="xs-text py-2 " id="review">
+              review Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far
+              quetzal
               goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop
               tightly neurotic hungrily some and dear furiously this apart.Spluttered narrowly yikes left
             </p>
           </div>
         </div>
       </div>
-
       <div class="col-md-3 sidebar">
         <div class="">
           <div class="searchcontainer fcc p-2 mt-2  ">
@@ -346,177 +377,65 @@
   </div>
 </section>
 
-<section class="container-fluid sectiongap">
-  <div class="container">
-    <div class="title">
-      <div class="lg-texts ">product <span class="greenhighlight">deal</span> </div>
-      <div class="xs-text-md greenhighlight ">Don't wait. The time will never be just right.</div>
-    </div>
-    <div class="row py-2 fcc flex-wrap gap-md-0 gap-1">
-      <div class="col-md-3 col-5">
-        <div class=" customcard row col-md-12 p-2 rounded">
-          <div class="card-body ">
-            <div class="imgf d-flex justify-content-center py-2">
-              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
-            </div>
-            <div class="d-flex justify-content-between mx-1">
-              <p class="xs-text needhide">type</p>
-              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
-                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-              </p>
+<!-- product deal -->
+@include("frontend.include.landproperties")
 
-            </div>
-            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
-            <div class="d-flex justify-content-between mx-1 ">
-              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
-              <p class="xs-text needhide">500 ml</p>
-            </div>
-            <div class="d-flex gap-2  py-2">
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-5 mb-2">
-        <div class="row"></div>
-        <div class=" customcard row col-md-12 p-2 rounded">
-          <div class="card-body ">
-            <div class="imgf d-flex justify-content-center py-2">
-              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
-            </div>
-            <div class="d-flex justify-content-between mx-1">
-              <p class="xs-text needhide">type</p>
-              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
-                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-              </p>
-
-            </div>
-            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
-            <div class="d-flex justify-content-between mx-1 ">
-              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
-              <p class="xs-text needhide">500 ml</p>
-
-            </div>
-            <div class="d-flex gap-2  py-2">
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-5 mb-2">
-        <div class=" customcard row col-md-12 p-2 rounded">
-          <div class="card-body ">
-            <div class="imgf d-flex justify-content-center py-2">
-              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
-            </div>
-            <div class="d-flex justify-content-between mx-1">
-              <p class="xs-text">type</p>
-              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
-                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-              </p>
-
-            </div>
-            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
-            <div class="d-flex justify-content-between mx-1 ">
-              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
-              <p class="xs-text">500 ml</p>
-            </div>
-            <div class="d-flex gap-2  py-2">
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-5 mb-2">
-        <div class=" customcard row col-md-12 p-2 rounded">
-          <div class="card-body ">
-            <div class="imgf d-flex justify-content-center py-2">
-              <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class="mdimage-lg ">
-            </div>
-            <div class="d-flex justify-content-between mx-1">
-              <p class="xs-text">type</p>
-              <p class="xs-text"><i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
-                  class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-              </p>
-
-            </div>
-            <p class="xs-text-bd m-1 my-2">mali gaiko pure gheu</p>
-            <div class="d-flex justify-content-between mx-1 ">
-              <p class="md-text">rs. <span>450</span> <span class="xs-text wrongprice">500</span></p>
-              <p class="xs-text">500 ml</p>
-            </div>
-            <div class="d-flex gap-2  py-2">
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-              <i class="fa-regular fa-heart customicon"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- explore -->
-<section class="container-fluid advertisement py-5">
-  <div class="container">
-    <div class="row d-flex justify-content-center align-items-center gap-3">
-
-      <div class="col-md-6 order-2 order-md-1">
-        <div class="xs-text-bd yellowhighlight">yak churpi</div>
-        <div class="lg-texts whitehighlight ">explore categories</div>
-        <p class="xs-text whitehighlight my-2">Vegetarian,farm grocery store vector illustration, green white
-          color.
-          Find Vegetables Background stock images in HD and millions of other royalty-free stock photos,
-          illustrations and vectors in the</p>
-        <div class="adv-button-collection d-flex gap-3">
-          <button class="btn-buttonblack mt-2">Shop Now</button>
-          <button class="btn-buttonwhite mt-2">Shop Now</button>
-        </div>
-      </div>
-      <img src="{{ asset("image/house3.png")}}" alt="" srcset="" class=" col-md-4 lgimage order-md-2 order-1">
-
-    </div>
-
-  </div>
-</section>
-
+<!-- advertisement -->
+@include("frontend.include.advertisement")
 
 <script>
+
+  // to toggle description ,additional and review
+  function callToggle(element) {
+    const items = document.querySelectorAll('.changer')
+    const description = document.getElementById('description');
+    const additional = document.getElementById('additional');
+    const review = document.getElementById('review');
+    description.style.display = "none";
+    additional.style.display = "none";
+    review.style.display = "none";
+
+    items.forEach(item => {
+      item.classList.remove("makeactive");
+    })
+    element.classList.add("makeactive");
+
+    const id = element.getAttribute("data-id");
+    if (id === "description") {
+      description.style.display = "block";
+    }
+    else if (id === "additional") {
+      additional.style.display = "block";
+    }
+    else {
+      review.style.display = "block";
+    }
+  }
+
+  // Toggle the display property
   function buyNowFun() {
     const getSingleBuy = document.querySelector(".hidesinglebuy");
 
-    // Toggle the display property
+
     if (getSingleBuy.style.display === "none") {
       getSingleBuy.style.display = "block";
     } else {
       getSingleBuy.style.display = "none";
     }
   }
-  function closeSinglebuy(){
+  //to close the display property of single page
+  function closeSinglebuy() {
     const getSingleBuy = document.querySelector(".hidesinglebuy");
-    if(getSingleBuy.style.display ==="block"){
+    if (getSingleBuy.style.display === "block") {
       getSingleBuy.style.display = "none";
 
     }
-    else{
+    else {
       getSingleBuy.style.display = "block";
 
     }
 
   }
 </script>
-
-
-
 
 @endsection

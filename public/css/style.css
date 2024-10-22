@@ -440,6 +440,11 @@ input::placeholder {
     height: 400px;
     object-fit: cover;
 }
+.mdimage-exlgcd {
+    width: 260px;
+    height: 300px;
+    object-fit: cover;
+}
 
 .mdimage-lglg {
     width: 250px;
@@ -485,6 +490,11 @@ input::placeholder {
     .indexbannerimage {
         width: 120px;
         height: 100px;
+    }
+    .smimage {
+        width:40px;
+        height:40px;
+        object-fit: cover;
     }
 }
 
@@ -556,7 +566,7 @@ input::placeholder {
 
 /* -----------------------------starting of the page---------------------------------------------------------------- */
 
-.chatleft-items {
+.left-items {
     background: rgb(244, 244, 244);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     height:calc(300px + 10vh);
@@ -565,7 +575,7 @@ input::placeholder {
 }
 
 @media (max-width:768px){
-    .chatleft-items{
+    .left-items{
         display: flex !important;
         justify-content: space-between;
         height: auto;

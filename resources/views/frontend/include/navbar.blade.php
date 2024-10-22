@@ -258,36 +258,55 @@
         </i>
         <a class="navbar-brand" href="/"> <img src="{{ asset('image/logos.png') }}" alt="Logo" class="logoimg" /></a>
       </div>
+      <style>
+        .navactive{
+          background:var(--off-green);
+        }
+      </style>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0 mx-auto gap-2">
+      <ul class="navbar-nav mb-2 mb-lg-0 mx-auto gap-2  nav-pills nav-fill">
+    <li class="nav-item">
+        <a class="nav-link navactive" data-id="home" href="/" onclick="toggleActive(this)">home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-id="shop" href="{{ route('properties') }}" onclick="toggleActive(this)">shop</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-id="pages" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="toggleActive(this)">pages</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-id="blog" href="{{ route('blog') }}" onclick="toggleActive(this)">blog</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-id="contact" href="{{ route('contact') }}" onclick="toggleActive(this)">contact</a>
+    </li>
+</ul>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/">home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('properties') }}">shop</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-              aria-expanded="false">pages</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('blog') }}">blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route("contact")}}">contact</a>
-          </li>
-
-        </ul>
       </div>
+    
+    <script>
+ function toggleActive (elements) {
+    const items = document.querySelectorAll(".nav-link");
+
+    items.forEach(item => {
+             item.classList.remove("navactive");
+           
+        });
+        elements.classList.add("navactive");
+
+  }
+
+
+</script>
+
 
       <div class="forhide">
         <div class="searchcontainer d-flex justify-content-center mx-3 ">

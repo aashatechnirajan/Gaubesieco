@@ -5,28 +5,29 @@
 
 {{--bannersection --}}
 @include("frontend.include.indexbanner")
-{{--blog --}}
-@include("frontend.include.blog")
 
+{{--explore --}}
+@include("frontend.include.explore")
+
+{{--day of deal and product deal --}}
+@include("frontend.include.dayofdeal")
+
+{{--day of deal and product deal --}}
 @include("frontend.include.landproperties")
+
+{{--advertisement --}}
+@include("frontend.include.advertisement")
+
+{{--hotandfeature --}}
+@include("frontend.include.hotandfeature")
+
+{{--categories--}}
 @include("frontend.include.categories")
 
-{{--advantage --}}
-<!-- @include("frontend.include.advantage") -->
-
-{{--description about company --}}
-<!-- @include("frontend.include.about") -->
-
-{{--our properties --}}
-<!-- @include("frontend.include.project") -->
 
 
 
-<!-- @includeIf("frontend,include.counter") -->
-{{-- <!-- testimonial --> --}}
-<!-- @include("frontend.include.testimonial") -->
 
-{{--blog --}}
 
 
 
