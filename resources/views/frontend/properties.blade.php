@@ -92,12 +92,25 @@
     background-color: #f5f5f5;
   }
 
-  .btn-xs {
+  .btn-xs-weight {
     border-radius: var(--radius4);
     height: 22px;
     width: 54px;
     font-size: 12px;
   }
+
+  .btn-xs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius4);
+        height:28px;
+        width: 44px;
+        font-size:24px;
+        font-family: var(--font-family);
+        font-weight: var(--weight700);
+    }
+
 
   @media(max-width:450px) {
     .needhide {
@@ -129,20 +142,24 @@
   </div>
 </section>
 <style>
+
   .hidesinglebuy {
-    background: var(--border-color);
+    background: var(--white-green);
     min-height: 100vh;
     width:55%;
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 20;
+    z-index:30;
     display: none;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.5);
+   
+
   }
 
   .fa-xmark {
     position: absolute;
-    top:20%;
+    top:22%;
     right:1.5%;
     z-index: 20;
     background: black;
@@ -215,11 +232,11 @@
           <div class="col-md-4">
             <h5 class="sm-text"><strong>Seeds of Change helll</strong></h5>
           </div>
-          <div class="d-flex align-items-center gap-1 col-md-3 ">
-            <button class="btn-xsbutton p-0 m-0 ">-</button>
-            <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
-            <button class="btn-xsbutton p-0 m-0 ">+</button>
-          </div>
+          <div class="d-flex align-items-center gap-1 col-md-3">
+                                <button class="btn-xs">-</button>
+                                <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
+                                <button class=" btn-xs ">+</button>
+                            </div>
           <p class="xs-text-bd  yellowhighlight m-md-0 m-2 col-md-2 ">Rs 30000</p>
         </div>
       </div>
@@ -246,15 +263,26 @@
             <div class="row">
               <div class="d-flex col-md-5 ">
                 <div class="row">
-                  <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-12  lgimage-lgheightcd">
+                  <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-12  lgimage-lgheightcd  productnameimage">
                   <div class=" col-md-12 m-3">
-                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3 smimage-lg">
-                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3  smimage-lg ">
-                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3 smimage-lg">
-                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3   smimage-lg">
+                    <img src="{{asset("image/expl.png")}}" alt="" class=" col-md-3 smimage-lg" onclick="otherimage(this)">
+                    <img src="{{asset("image/house2.png")}}" alt="" class=" col-md-3  smimage-lg " onclick="otherimage(this)">
+                    <img src="{{asset("image/house1.png")}}" alt="" class=" col-md-3 smimage-lg" onclick="otherimage(this)">
+                    <img src="{{asset("image/house3.png")}}" alt="" class=" col-md-3   smimage-lg" onclick="otherimage(this)">
                   </div>
                 </div>
               </div>
+
+ <script>
+    function otherimage(element) {
+  const productnameimage=document.querySelector(".productnameimage");
+  productnameimage.src=element.src;
+
+}
+
+  
+ </script>
+
               <!-- Property Details -->
               <div class=" col-md-7 d-flex flex-column justify-content-between ">
                 <div class="d-flex gap-1">
@@ -295,9 +323,9 @@
                     <span class="xs-text-bd">weight</span>
                     <span class="d-flex gap-1">
                       <span>:</span>
-                      <button class="btn-xs">1000gm</button>
-                      <button class="btn-xs">11</button>
-                      <button class="btn-xs">11</button>
+                      <button class="btn-xs-weight">1000gm</button>
+                      <button class="btn-xs-weight">11</button>
+                      <button class="btn-xs-weight">11</button>
                     </span>
                   </p>
                 </div>

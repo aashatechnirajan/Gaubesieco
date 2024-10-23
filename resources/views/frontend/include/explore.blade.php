@@ -46,7 +46,7 @@
 
 <style>
   .explorecat{
-  background:#F1EFEF;
+  /* background:#F1EFEF; */
 
 }
 .swiper-slide .card{

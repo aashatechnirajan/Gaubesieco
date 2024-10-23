@@ -108,7 +108,7 @@ footer{
 
 
 
-<footer class="container-fluid  mt-2 py-4">
+<footer class="container-fluid py-4">
   <div class="container mb-2 ">
     <div class="row ">
       <div class="col-md-4 my-1 ">

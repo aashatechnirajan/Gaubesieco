@@ -93,10 +93,15 @@
     }
 
     .btn-xs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: var(--radius4);
-        height: 22px;
-        width: 54px;
-        font-size: 12px;
+        height:28px;
+        width: 44px;
+        font-size:24px;
+        font-family: var(--font-family);
+        font-weight: var(--weight700);
     }
 
     @media(max-width:450px) {
@@ -153,30 +158,13 @@
                                 <p class="sm-text"><strong>Size:</strong> <span>1kg</span></p>
                             </div>
                             <div class="d-flex align-items-center gap-1 col-md-3">
-                                <button class="btn-xsbutton p-0 m-0 ">-</button>
+                                <button class="btn-xs">-</button>
                                 <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
-                                <button class="btn-xsbutton p-0 m-0 ">+</button>
+                                <button class=" btn-xs ">+</button>
                             </div>
                             <p class="xs-text-bd  yellowhighlight m-md-0 m-2 col-md-2 ">Rs 300000</p>
                         </div>
-                        <div class="row d-flex align-items-center mb-3  border rounded shadow-sm bg-light py-3  my-1">
-                            <div class="col-md-3 d-flex align-items-center col-2">
-                                <input type="checkbox" class="btn-xsbutton " />
-                                <img src="{{ asset("image/house3.png")}}" alt="" srcset=""
-                                    class="col-md-5 smimage-lg mx-2">
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="xs-text-bd">Seeds of Change helll</h5>
-                                <p class="sm-text py-1"><strong>Sold By:</strong> <span>aasha tech</span></p>
-                                <p class="sm-text"><strong>Size:</strong> <span>1kg</span></p>
-                            </div>
-                            <div class="d-flex align-items-center gap-1 col-md-3">
-                                <button class="btn-xsbutton p-0 m-0 ">-</button>
-                                <button class="btn-xsbutton-lg p-0 m-0 ">0</button>
-                                <button class="btn-xsbutton p-0 m-0 ">+</button>
-                            </div>
-                            <p class="xs-text-bd  yellowhighlight m-md-0 m-2 col-md-2 ">Rs 300000</p>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

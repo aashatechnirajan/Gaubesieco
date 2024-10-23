@@ -1,18 +1,18 @@
 <style>
-
-.logoimg {
+  .logoimg {
     width: auto;
-    height: 60px;
+    height:56px;
     object-fit: cover;
-}
+  }
 
-@media (max-width: 400px) {
+  @media (max-width: 400px) {
     .logoimg {
-        width: 130px;
-        height: 60px;
-        object-fit: contain;
+      width: 130px;
+      height: 60px;
+      object-fit: contain;
     }
-}
+  }
+
   a {
     text-decoration: none;
   }
@@ -39,17 +39,14 @@
 
   .line1 {
     width: 66%;
-
   }
 
   .line2 {
     width: 76%;
-
   }
 
   .line3 {
     width: 66%;
-
   }
 
   .crossmenu.cross .line1 {
@@ -79,22 +76,34 @@
 
   }
 
-  .navsection .nav-item a {
+  .navsection .navbar-collapse .nav-item a {
     color: white !important;
+    letter-spacing: 1px;
   }
 
   .navinput {
     width: 24vh;
     height: 5vh;
     border-radius: 20px 0 0 20px;
-    border: 1px solid white
+    border: 1px solid white;
+  }
+  .navinput:focus{
+   
+    border-radius: 20px 0 0 20px;
+    border: 1px solid white;
+    outline: none;
+    stroke: none;
   }
 
   input::placeholder {
-    font-size: 14px;
+    font-size:16px;
     font-weight: 400;
-    color: var(--text-gray);
+    color: var(--pure-black);
+    letter-spacing:1px;
     font-family: var(--font-family);
+    letter-spacing:0.8px;
+  outline: none;
+  stroke: none;
   }
 
   .search {
@@ -103,6 +112,8 @@
     padding: 0 2rem;
     border-radius: 0 20px 20px 0;
     color: white;
+    letter-spacing:1px;
+    font-size: var(--font-family);
   }
 
   @media (max-width:998px) {
@@ -114,204 +125,290 @@
 
   .top-counter {
     position: absolute;
-    padding: 0 6px;
-    top: 0.1rem;
+    padding: 0 7px;
+    top: 0rem;
     right: 0rem;
     background: var(--yellow);
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--pure-white);
   }
 
   .forrelative {
     position: relative;
   }
+
+
+  .activites {
+    display: none;
+  }
+
+
   .bur-menu {
     display: none;
     z-index: 1000;
-    background: var(--green);
-    height: 84vh;
-    width: 25vw;
+    background: var(--white-green);
+    height: 90vh;
+    width: 20vw;
     position: absolute;
-    top: 7rem;
-    color: white;
+    top: 5.17rem;
+    left: 0.1rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2;
-    border-radius: var(--border-radius);
-}
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.5);
 
-.activites {
-    display: none;
-}
+  }
 
-@media (max-width: 990px) {
-    .bur-menu {
-        width: 50vw;
-        top: 7rem !important;
-    }
-
-    .activites {
-        display: block;
-    }
-}
-
-
-.bur-menu li {
+  .bur-menu li {
     display: flex;
     align-items: center;
-    margin-left: 20%;
-    font-size: 24px !important;
     list-style: none;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
-    width: 52%;
-}
+    width: 100%;
+    text-align: center;
 
-.bur-menu .font-collection {
-    margin-left: 20%;
-    width: 20%;
-}
-.customicons {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 0.6rem;
-    border-radius: var(--border-radius);
-}
+  }
 
-.font-collection :hover {
-    border-radius: var(--border-radius);
-    z-index: 1;
-}
+  .bur-menu li a {
+    color: var(--text-gray) !important;
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: var(--font-family) !important;
 
-.bur-menu li:hover {
+  }
+
+  .bur-menu li:hover {
     background: var(--off-yellow);
     border-radius: var(--border-radius);
-}
+  }
 
-@media (max-width: 700px) {
+
+  @media (max-width: 990px) {
     .bur-menu {
-        top: 20%;
-        width: 90vw;
+      width: 50vw;
+
     }
 
-    .bur-menu li {
-        width: 62%;
+    .activites {
+      display: block;
     }
-}
+  }
 
+  @media (max-width: 700px) {
+    .bur-menu {
+      width: 80vw;
+      top: 5.4rem;
+    }
 
-
-.nav-button-collection {
-    display: none;
-}
-</style>
-
-<section class="container-fluid navsection">
-  <div class="container">
-    <div class="bur-menu py-3" id="bur-menu">
-      <div class="activites">
-        <h2 class="navdestext pt-3">Activities Section</h2>
-        <li class="nav-item">
-          <i class="fa-solid fa-house customiconssmall"></i>
-          <a class="nav-link" aria-current="page" href="/">Introduction</a>
-        </li>
-        <li class="nav-item">
-          <i class="fa-solid fa-truck-moving customiconssmall"></i>
-          <a class="nav-link" aria-current="page" href="{{ route('properties') }}">Rent</a>
-        </li>
-        <li class="nav-item">
-          <i class="fa-solid fa-cart-shopping customiconssmall"></i>
-          <a class="nav-link" aria-current="page" href="{{ route('properties') }}">Buy</a>
-        </li>
-      </div>
-      <div class="information">
-        <h2 class="navdestext">Information Section</h2>
-        <li class="nav-item d-flex">
-          <i class="fa-solid fa-circle-question customiconssmall"></i>
-          <a class="nav-link" aria-current="page" href="{{ route('about') }}">About</a>
-        </li>
-        <li class="nav-item">
-          <i class="fa-solid fa-blog customiconssmall"></i>
-          <a class="nav-link active" aria-current="page" href="{{ route('blog') }}">Blog</a>
-        </li>
-        <li class="nav-item">
-          <i class="fa-solid fa-address-book customiconssmall"></i>
-          <a class="nav-link active" aria-current="page" href="{{ route('contact') }}">Contact</a>
-        </li>
-      </div>
-      <h2 class="navdestext">Follow Us</h2>
-      <div class="d-flex font-collection py-2">
-        <a href="#"><i class="fa-brands fa-facebook customicons mx-2"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin customicons mx-2"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram customicons mx-2"></i></a>
-      </div>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-light navcustom">
-      <div class="d-flex justify-content-center align-items-center">
-        <!-- <i class="customicons crossmenu p-1 m-0 d-flex" onclick="funmenu()"> -->
-        <!-- function comment so not work -->
-        <i class="customicons crossmenu p-1 m-0 mx-md-1 d-flex">
-          <div class="linea line1"></div>
-          <div class="linea line2"></div>
-          <div class="linea line3"></div>
-        </i>
-        <a class="navbar-brand" href="/"> <img src="{{ asset('image/logos.png') }}" alt="Logo" class="logoimg" /></a>
-      </div>
-      <style>
-        .navactive{
-          background:var(--off-green);
-        }
-      </style>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 mx-auto gap-2  nav-pills nav-fill">
-    <li class="nav-item">
-        <a class="nav-link navactive" data-id="home" href="/" onclick="toggleActive(this)">home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-id="shop" href="{{ route('properties') }}" onclick="toggleActive(this)">shop</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-id="pages" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="toggleActive(this)">pages</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-id="blog" href="{{ route('blog') }}" onclick="toggleActive(this)">blog</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-id="contact" href="{{ route('contact') }}" onclick="toggleActive(this)">contact</a>
-    </li>
-</ul>
-
-      </div>
-    
-    <script>
- function toggleActive (elements) {
-    const items = document.querySelectorAll(".nav-link");
-
-    items.forEach(item => {
-             item.classList.remove("navactive");
-           
-        });
-        elements.classList.add("navactive");
 
   }
 
 
-</script>
+
+  .customicons {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.6rem;
+    border-radius: var(--border-radius);
+  }
+
+  .font-collection :hover {
+    border-radius: var(--border-radius);
+    z-index: 1;
+  }
+
+
+
+  .nav-button-collection {
+    display: none;
+  }
+
+  .forbottomline {
+    height: 1px;
+    width: 100%;
+    color: red;
+    background: #000;
+  }
+
+  .navactive {
+    background: var(--off-green);
+  }
+</style>
+
+<section class="container-fluid navsection">
+  <div class="container">
+    <div class="bur-menu p-3" id="bur-menu">
+      <div class="">
+        <!-- <div class="activites">
+          <h2 class="navdestext pt-3 forbottomline">Activities Section</h2>
+          <li class="nav-item  forbottomline">
+            <a class="nav-link" aria-current="page" href="/">Introduction</a>
+          </li>
+          <li class="nav-item  forbottomline">
+            <a class="nav-link" aria-current="page" href="{{ route('properties') }}">Rent</a>
+          </li>
+          <li class="nav-item  forbottomline">
+            <a class="nav-link" aria-current="page" href="{{ route('properties') }}">Buy</a>
+          </li>
+        </div> -->
+        <style>
+          .bur-menu .nav-item:hover .dropdown-menu {
+            display: block;
+            position: absolute;
+            top: 0rem;
+            left: 17rem;
+
+          }
+
+          .dropdown-menu {
+            display: none;
+
+          }
+        </style>
+        <li class="nav-item dropdown nav-item text-center d-flex flex-column gap-2">
+          <a class="nav-link" data-toggle="dropdown" data-id="pages" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Category A</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Category Aa</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Category Aa</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Action2</a>
+          </div>
+          <span class="forbottomline"></span>
+        </li>
+        <li class="nav-item dropdown nav-item text-center d-flex flex-column gap-2">
+          <a class="nav-link" data-toggle="dropdown" data-id="pages" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Category b</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Category ba</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Category bb</a>
+
+          </div>
+          <span class="forbottomline"></span>
+        </li>
+        <li class="nav-item dropdown nav-item text-center d-flex flex-column gap-2">
+          <a class="nav-link" data-toggle="dropdown" data-id="pages" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Category c</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Action2</a>
+          </div>
+          <span class="forbottomline"></span>
+        </li>
+
+        <li class="nav-item text-center d-flex flex-column gap-2 ">
+          <a class="nav-link md-text" aria-current="page" href="{{ route('contact') }}">Category d</a>
+          <span class="forbottomline"></span>
+        </li>
+
+
+
+        <div class="d-flex flex-column py-3">
+          <h2 class="md-text text-center  py-1">connect with us</h2>
+          <div class="d-flex font-collection fcc py-2 gap-3 p-0 m-0">
+            <a href="#" class="p-0 m-0 "><i class="fa-brands fa-facebook customicons"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin customicons "></i></a>
+            <a href="#"><i class="fa-brands fa-instagram customicons "></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light navcustom">
+      <div class="d-flex justify-content-center align-items-center">
+        <i class="customicons crossmenu p-1 m-0 d-flex" onclick="funmenu()">
+          <div class="linea line1"></div>
+          <div class="linea line2"></div>
+          <div class="linea line3"></div>
+        </i>
+        <a class="navbar-brand " href="/"> <img src="{{ asset('image/logos.png') }}" alt="Logo" class="logoimg mx-md-3" /></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 mx-auto gap-2 nav-pills nav-fill">
+          <li class="nav-item ">
+            <a class="nav-link" data-id="home" href="/" onclick="toggleActive(this)" data-target="home">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-id="shop" href="{{ route('properties') }}" onclick="toggleActive(this)"
+              data-target="shop">shop</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-id="pages" href="#" role="button"
+              aria-haspopup="true" aria-expanded="false" onclick="toggleActive(this)" data-target="pages">pages</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-id="blog" href="{{ route('blog') }}" onclick="toggleActive(this)"
+              data-target="blog">blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-id="contact" href="{{ route('contact') }}" onclick="toggleActive(this)"
+              data-target="contact">contact</a>
+          </li>
+        </ul>
+
+
+      </div>
+
+      <script>
+        function toggleActive(element) {
+          // Remove active class from all links
+          const items = document.querySelectorAll(".nav-link");
+          items.forEach(item => {
+            item.classList.remove("navactive");
+          });
+
+          // Add active class to the clicked link
+          element.classList.add("navactive");
+
+          // Store the active state in local storage
+          const target = element.getAttribute('data-target');
+          localStorage.setItem('activeNav', target);
+        }
+
+        // Initialize active class based on local storage
+        function initActive() {
+          let activeTarget = localStorage.getItem('activeNav');
+          const items = document.querySelectorAll(".nav-link");
+
+          // If no active target, set default to "home" and store it
+          if (!activeTarget) {
+            activeTarget = 'home';
+            localStorage.setItem('activeNav', activeTarget);
+          }
+
+          items.forEach(item => {
+            if (item.getAttribute('data-target') === activeTarget) {
+              item.classList.add("navactive");
+            }
+          });
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', initActive);
+      </script>
+
 
 
       <div class="forhide">
         <div class="searchcontainer d-flex justify-content-center mx-3 ">
-          <input type="text" class="navinput m-0 p-2" placeholder="search your project">
-          <button class="search "> Search</button>
+          <input type="text" class="navinput m-0 p-2" placeholder="search project">
+          <button class="search"> Search</button>
 
         </div>
       </div>
@@ -325,19 +422,18 @@
         <div class="forhide">
           <a href="{{route('cart')}}" class="d-flex align-items-center forrelative ">
             <i class="fa-solid fa-cart-plus customicon"></i>
-            <p class="sm-text top-counter">9</p>
+            <p class="xs-text top-counter">9</p>
           </a>
         </div>
         <a href="{{route("favourite")}}" class="d-flex align-items-center forrelative">
           <i class="fa-regular fa-heart customicon"></i>
-          <p class="sm-text top-counter">1</p>
+          <p class="xs-text top-counter">1</p>
         </a>
       </div>
     </nav>
   </div>
 </section>
 <script>
-
   function funmenu() {
     const menuIcon = document.querySelector('.crossmenu');
     const menu = document.getElementById('bur-menu');

@@ -23,14 +23,15 @@
     #categoryfirst_third {
         display: none;
     }
+
+
 </style>
 
 
 
 
 
-
-<section class="container-fluid py-4">
+<section class="container-fluid py-4 categoriessection">
     <div class="container">
         <div class="title ">
             <h1 class="lg-texts">Details View <span class="greenhighlight">Category</span></h1>

@@ -1,15 +1,17 @@
-
 <!-- feature and hot deal -->
 <style>
-    .featureandhot{
-        background:#E5E6E2;
-        padding:4rem 0;
+    .featureandhot {
+        background: #f9f9f9;
+        padding: 4rem 0;
     }
+    .customcard-dup{
+        border: 1px solid var(--green);
+    }
+
     .hotproduct {
         display: none;
     }
-
- </style>
+</style>
 <section class="container-fluid  featureandhot ">
     <div class="container">
         <div class="row gap-5">
@@ -49,7 +51,7 @@
 
 
                 <div class="row py-3 col-md-12 product-container hotproduct">
-                <div class="fbc flex-wrap gap-1">
+                    <div class="fbc flex-wrap gap-1">
                         <div class="col-md-3 d-flex align-items-center mb-3">
                             <img src="{{ asset('image/house2.png') }}" alt="" class="smimage">
                             <div class="mx-2">
@@ -104,49 +106,48 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const featureDiv = document.querySelector(".featureproduct");
-    const hotDiv = document.querySelector(".hotproduct");
-    const featuresProduct = document.getElementById("featuresProduct");
-    const hotSale = document.getElementById("hotSale");
+    document.addEventListener("DOMContentLoaded", function () {
+        const featureDiv = document.querySelector(".featureproduct");
+        const hotDiv = document.querySelector(".hotproduct");
+        const featuresProduct = document.getElementById("featuresProduct");
+        const hotSale = document.getElementById("hotSale");
 
-    // Set initial states
-    featureDiv.style.display = "block"; // Show feature product initially
-    hotDiv.style.display = "none";      // Hide hot product initially
+        // Set initial states
+        featureDiv.style.display = "block"; // Show feature product initially
+        hotDiv.style.display = "none";      // Hide hot product initially
 
-    // Event listeners for toggling
-    featuresProduct.addEventListener("click", function() {
-        featureFun();
-        // Add underline and active class
-        featuresProduct.classList.add("underlineborder", "active");
-        hotSale.classList.remove("underlineborder", "active");
+        // Event listeners for toggling
+        featuresProduct.addEventListener("click", function () {
+            featureFun();
+            // Add underline and active class
+            featuresProduct.classList.add("underlineborder", "active");
+            hotSale.classList.remove("underlineborder", "active");
+        });
+
+        hotSale.addEventListener("click", function () {
+            hotFun();
+            // Add underline and active class
+            hotSale.classList.add("underlineborder", "active");
+            featuresProduct.classList.remove("underlineborder", "active");
+        });
     });
 
-    hotSale.addEventListener("click", function() {
-        hotFun();
-        // Add underline and active class
-        hotSale.classList.add("underlineborder", "active");
-        featuresProduct.classList.remove("underlineborder", "active");
-    });
-});
+    function featureFun() {
+        const featureDiv = document.querySelector(".featureproduct");
+        const hotDiv = document.querySelector(".hotproduct");
 
-function featureFun() {
-    const featureDiv = document.querySelector(".featureproduct");
-    const hotDiv = document.querySelector(".hotproduct");
+        // Show featureDiv and hide hotDiv
+        featureDiv.style.display = "block";
+        hotDiv.style.display = "none";
+    }
 
-    // Show featureDiv and hide hotDiv
-    featureDiv.style.display = "block";
-    hotDiv.style.display = "none";
-}
+    function hotFun() {
+        const featureDiv = document.querySelector(".featureproduct");
+        const hotDiv = document.querySelector(".hotproduct");
 
-function hotFun() {
-    const featureDiv = document.querySelector(".featureproduct");
-    const hotDiv = document.querySelector(".hotproduct");
-
-    // Show hotDiv and hide featureDiv
-    hotDiv.style.display = "block";
-    featureDiv.style.display = "none";
-}
+        // Show hotDiv and hide featureDiv
+        hotDiv.style.display = "block";
+        featureDiv.style.display = "none";
+    }
 
 </script>
-   
