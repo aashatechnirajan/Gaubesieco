@@ -46,7 +46,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('property.update', $property->id) }}" method="POST" enctype="multipart/form-data" id="propertyForm">
+                    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data" id="productForm">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="cropData" id="cropData">
@@ -58,13 +58,13 @@
                                 <!-- Title -->
                                 <div class="form-group mb-3">
                                     <label for="title">Title</label>
-                                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $property->title) }}" required>
+                                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $product->title) }}" required>
                                 </div>
 
                                 <!-- Description -->
                                 <div class="form-group mb-3">
                                     <label for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="5" required>{{ old('description', $property->description) }}</textarea>
+                                    <textarea name="description" id="description" class="form-control" rows="5" required>{{ old('description', $product->description) }}</textarea>
                                 </div>
 
                                 <!-- Main Image Upload -->
@@ -102,7 +102,7 @@
                                         <select name="category_id" id="category_id" class="form-control" required>
                                             <option value="">Choose Category</option>
                                             @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" {{ old('category_id', $property->category_id) == $category->id ? 'selected' : '' }}>
+                                                <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
                                                     {{ $category->title }}
                                                 </option>
                                             @endforeach
@@ -120,27 +120,27 @@
                                     <!-- Cost Price -->
                                     <div class="form-group mb-3 col-md-11">
                                         <label for="cost_price">Cost Price</label>
-                                        <input type="text" name="cost_price" id="cost_price" class="form-control" value="{{ old('cost_price', $property->cost_price) }}" required>
+                                        <input type="text" name="cost_price" id="cost_price" class="form-control" value="{{ old('cost_price', $product->cost_price) }}" required>
                                     </div>
 
                                     <!-- Selling Price-->
                                     <div class="form-group mb-3 col-md-6">
                                         <label for="selling_price">Selling Price</label>
-                                        <input type="text" name="selling_price" id="selling_price" class="form-control" value="{{ old('selling_price', $property->selling_price) }}" required>
+                                        <input type="text" name="selling_price" id="selling_price" class="form-control" value="{{ old('selling_price', $product->selling_price) }}" required>
                                     </div>
 
                                     <!-- Quantity -->
                                     <div class="form-group mb-3 col-md-6">
                                         <label for="product_quantity">Quantity</label>
-                                        <input type="text" name="product_quantity" id="product_quantity" class="form-control" value="{{ old('product_quantity', $property->product_quantity) }}" required>
+                                        <input type="text" name="product_quantity" id="product_quantity" class="form-control" value="{{ old('product_quantity', $product->product_quantity) }}" required>
                                     </div>
 
                                     <!-- Availability Status -->
                                     <div class="form-group mb-3 col-md-7">
                                         <label for="availability_status">Availability Status</label>
                                         <select name="availability_status" id="availability_status" class="form-control" required>
-                                            <option value="available" {{ old('availability_status', $property->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
-                                            <option value="sold" {{ old('availability_status', $property->availability_status) == 'sold' ? 'selected' : '' }}>Sold</option>
+                                            <option value="available" {{ old('availability_status', $product->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
+                                            <option value="sold" {{ old('availability_status', $product->availability_status) == 'sold' ? 'selected' : '' }}>Sold</option>
                                       
                                         </select>
                                     </div>
@@ -150,11 +150,11 @@
                                         <label for="status">Status</label>
                                         <div class="gap-2">
                                             <div class="form-check">
-                                                <input type="radio" name="status" id="status_active" value="1" class="form-check-input" {{ old('status', $property->status) == '1' ? 'checked' : '' }} required>
+                                                <input type="radio" name="status" id="status_active" value="1" class="form-check-input" {{ old('status', $product->status) == '1' ? 'checked' : '' }} required>
                                                 <label for="status_active" class="form-check-label">Active</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" name="status" id="status_inactive" value="0" class="form-check-input" {{ old('status', $property->status) == '0' ? 'checked' : '' }} required>
+                                                <input type="radio" name="status" id="status_inactive" value="0" class="form-check-input" {{ old('status', $product->status) == '0' ? 'checked' : '' }} required>
                                                 <label for="status_inactive" class="form-check-label">Inactive</label>
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@
 
                         <div class="form-group mt-3">
                             <button type="submit" class="btn btn-primary">Update Product</button>
-                            <a href="{{ route('property.index') }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

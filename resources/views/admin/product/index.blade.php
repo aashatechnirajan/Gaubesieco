@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Product List</h4>
-                    <a href="{{ route('property.create') }}" class="btn btn-primary float-end">Add New
+                    <a href="{{ route('product.create') }}" class="btn btn-primary float-end">Add New
                         Prduct</a>
                 </div>
                 <div class="card-body">
@@ -24,7 +24,7 @@
                         </div>
                     @endif
 
-                    @if($properties->count() > 0)
+                    @if($products->count() > 0)
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -38,17 +38,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($properties as $property)
+                                @foreach($products as $product)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $property->title }}</td>
-                                        <td>{{ $property->category->title }}</td>
-                                        <td>{{ $property->subCategory->title }}</td>
+                                        <td>{{ $product->title }}</td>
+                                        <td>{{ $product->category->title }}</td>
+                                        <td>{{ $product->subCategory->title }}</td>
                                         
-                                        <td>${{ number_format($property->price, 2) }}</td>
+                                        <td>${{ number_format($product->price, 2) }}</td>
 
                                         <td>
-                                            @if($property->status)
+                                            @if($product->status)
                                                 <span class="badge bg-success">Active</span>
                                             @else
                                                 <span class="badge bg-danger">Inactive</span>
@@ -56,10 +56,10 @@
                                         </td>
                                         <td>
 
-                                            <a href="{{ route('property.edit', $property->id) }}" class="btn btn-outline-primary btn-sm">
+                                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-outline-primary btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('property.destroy', $property->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this service?')">
@@ -69,19 +69,19 @@
 
                                             <!-- Image Modal -->
 
-                                                <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#imageModal{{ $property->id }}">
+                                                <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#imageModal{{ $product->id }}">
                                                     I
                                                 </button>
     
-                                            <div class="modal fade" id="imageModal{{ $property->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $property->id }}" aria-hidden="true">
+                                            <div class="modal fade" id="imageModal{{ $product->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $product->id }}" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="imageModalLabel{{ $property->id }}">Edit Property Images</h5>
+                                                            <h5 class="modal-title" id="imageModalLabel{{ $product->id }}">Edit Product Images</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            {{-- <form action="{{ route('property.updateImages', $property->id) }}" method="POST" enctype="multipart/form-data"> --}}
+                                                            {{-- <form action="{{ route('product.updateImages', $product->id) }}" method="POST" enctype="multipart/form-data"> --}}
                                                                 @csrf
                                                                 @method('PUT')
     <div class="form-group mb-3">
@@ -136,38 +136,38 @@
                                    
 
                                      <!-- Button to trigger Offer Modal -->
-                                   <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#offerModal{{ $property->id }}">
+                                   <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#offerModal{{ $product->id }}">
                                      O
                                    </button>
 
                                     <!-- Offer Modal with Create/Edit Form -->
-                                   <div class="modal fade" id="offerModal{{ $property->id }}" tabindex="-1" aria-labelledby="offerModalLabel{{ $property->id }}" aria-hidden="true">
+                                   <div class="modal fade" id="offerModal{{ $product->id }}" tabindex="-1" aria-labelledby="offerModalLabel{{ $product->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                      <div class="modal-content" style="min-height: 300px;">
                                        <div class="modal-header">
-                                         <h5 class="modal-title" id="offerModalLabel{{ $property->id }}">
-                                          {{ $property->offer ? 'Edit' : 'Create' }} Offer for {{ $property->title }}
+                                         <h5 class="modal-title" id="offerModalLabel{{ $product->id }}">
+                                          {{ $product->offer ? 'Edit' : 'Create' }} Offer for {{ $product->title }}
                                          </h5>
                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                        </div>
                                       <div class="modal-body">
                                      <form action="{{ route('offers.store') }}" method="POST">
                                     @csrf
-                                   <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                   <input type="hidden" name="product_id" value="{{ $product->id }}">
                                   <div class="form-group mb-4">
                                   <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="featured_properties" id="featured_properties{{ $property->id }}" value="1" 
-                                     {{ $property->offer && $property->offer->featured_properties == 'Yes' ? 'checked' : '' }}>
-                                   <label class="form-check-label" for="featured_properties{{ $property->id }}">
+                                    <input class="form-check-input" type="checkbox" name="featured_products" id="featured_products{{ $product->id }}" value="1" 
+                                     {{ $product->offer && $product->offer->featured_products == 'Yes' ? 'checked' : '' }}>
+                                   <label class="form-check-label" for="featured_products{{ $product->id }}">
                                      Featured 
                                    </label>
                                 </div>
                               </div>
                                 <div class="form-group mb-4">
                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="offered_properties" id="offered_properties{{ $property->id }}" value="1" 
-                                      {{ $property->offer && $property->offer->offered_properties == 'Yes' ? 'checked' : '' }}>
-                                       <label class="form-check-label" for="offered_properties{{ $property->id }}">
+                                    <input class="form-check-input" type="checkbox" name="offered_products" id="offered_products{{ $product->id }}" value="1" 
+                                      {{ $product->offer && $product->offer->offered_products == 'Yes' ? 'checked' : '' }}>
+                                       <label class="form-check-label" for="offered_products{{ $product->id }}">
                                         Special Offer
                                       </label>
                                   </div>
@@ -188,7 +188,7 @@
                 </table>
             @else
                 <div class="alert alert-info">
-                    No properties available. <a href="{{ route('property.create') }}">Create a new property</a>.
+                    No products available. <a href="{{ route('product.create') }}">Create a new product</a>.
                 </div>
             @endif
         </div>

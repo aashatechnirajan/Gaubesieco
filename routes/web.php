@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PermissionsController;
-use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
@@ -141,12 +141,12 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
 });
 
 
-   //Property, Category, Subcategories Routes
+   //Product, Category, Subcategories Routes
 
-   Route::resource('admin/property', PropertyController::class);
+   Route::resource('admin/product', ProductController::class);
    Route::resource('admin/categories', CategoryController::class);
    Route::resource('admin/subcategories', SubCategoryController::class);
-   Route::get('/subcategories/{categoryId}', [PropertyController::class, 'getSubcategories'])->name('subcategories');
+   Route::get('/subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('subcategories');
 
 
    //Testimonial Routes 
@@ -168,8 +168,8 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
    //WhyUs Route
    Route::resource('whyus', WhyusController::class);
 
-   //Property Route
-   Route::resource('property', PropertyController::class);
+   //Product Route
+   Route::resource('product', ProductController::class);
 
    //Sitesetting route
    Route::resource('sitesettings', SiteSettingController::class);

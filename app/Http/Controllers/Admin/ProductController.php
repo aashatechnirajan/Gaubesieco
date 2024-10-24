@@ -12,29 +12,29 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-class PropertyController extends Controller
+class ProductController extends Controller
 {
     /**
-     * Display a listing of the properties.
+     * Display a listing of the products.
      */
     public function index()
     {
-        $properties = Product::with('category', 'subCategory')->latest()->get();
-        return view('admin.property.index', compact('properties'));
+        $products = Product::with('category', 'subCategory')->latest()->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
-     * Show the form for creating a new property.
+     * Show the form for creating a new product.
      */
     public function create()
     {
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        return view('admin.property.create', compact('categories', 'subCategories'));
+        return view('admin.product.create', compact('categories', 'subCategories'));
     }
 
     /**
-     * Store a newly created property in storage.
+     * Store a newly created product in storage.
      */
     public function store(Request $request)
     {
@@ -55,15 +55,15 @@ class PropertyController extends Controller
         ]);
 
         // Handle the main image upload (base64 images)
-        $images = $this->handleBase64Images($request->input('main_image'), 'property');
+        $images = $this->handleBase64Images($request->input('main_image'), 'product');
 
         // Handle other images upload
         $otherImages = [];
         if ($request->hasFile('other_images')) {
-            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
+            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'product/other_images');
         }
 
-        // Create new property record
+        // Create new product record
         Product::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -79,31 +79,31 @@ class PropertyController extends Controller
         ]);
 
         session()->flash('success', 'Product created successfully.');
-        return redirect()->route('property.index');
+        return redirect()->route('product.index');
     }
 
     /**
-     * Display the specified property.
+     * Display the specified product.
      */
-    public function show(Product $property)
+    public function show(Product $product)
     {
-        return view('admin.property.show', compact('property'));
+        // return view('admin.product.show', compact('product'));
     }
 
     /**
-     * Show the form for editing the specified property.
+     * Show the form for editing the specified product.
      */
-    public function edit(Product $property)
+    public function edit(Product $product)
     {
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        return view('admin.property.update', compact('property', 'categories', 'subCategories'));
+        return view('admin.product.update', compact('product', 'categories', 'subCategories'));
     }
 
     /**
-     * Update the specified property in storage.
+     * Update the specified product in storage.
      */
-    public function update(Request $request, Product $property)
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -122,20 +122,20 @@ class PropertyController extends Controller
 
         // Handle main image update if provided
         if ($request->has('main_image')) {
-            $this->deleteImages(json_decode($property->main_image, true), 'property/');
-            $images = $this->handleBase64Images($request->input('main_image'), 'property');
-            $property->main_image = json_encode($images);
+            $this->deleteImages(json_decode($product->main_image, true), 'product/');
+            $images = $this->handleBase64Images($request->input('main_image'), 'product');
+            $product->main_image = json_encode($images);
         }
 
         // Handle other images update if provided
         if ($request->hasFile('other_images')) {
-            $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
-            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
-            $property->other_images = json_encode($otherImages);
+            $this->deleteImages(json_decode($product->other_images, true), 'product/other_images/');
+            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'product/other_images');
+            $product->other_images = json_encode($otherImages);
         }
 
-        // Update the property record
-        $property->update([
+        // Update the product record
+        $product->update([
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
@@ -148,24 +148,24 @@ class PropertyController extends Controller
         ]);
 
         session()->flash('success', 'Product updated successfully.');
-        return redirect()->route('property.index');
+        return redirect()->route('product.index');
     }
 
     /**
-     * Remove the specified property from storage.
+     * Remove the specified product from storage.
      */
-    public function destroy(Product $property)
+    public function destroy(Product $product)
     {
         // Delete main images
-        $this->deleteImages(json_decode($property->main_image, true), 'property/');
+        $this->deleteImages(json_decode($product->main_image, true), 'product/');
 
         // Delete other images
-        $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
+        $this->deleteImages(json_decode($product->other_images, true), 'product/other_images/');
 
-        // Delete the property from the database
-        $property->delete();
+        // Delete the product from the database
+        $product->delete();
 
-        return redirect()->route('property.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
 
     // Keep all the existing private methods for image handling exactly as they are

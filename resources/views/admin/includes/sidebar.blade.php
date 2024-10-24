@@ -233,11 +233,11 @@
 
 
 
-                {{-- For Properties Management --}}
+                {{-- For Product Management --}}
 
                 <li class="nav-item">
                     <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                        <div class="col-auto navbar-vertical-label">Property Management</div>
+                        <div class="col-auto navbar-vertical-label">Product Management</div>
                         <div class="col ps-0">
                             <hr class="mb-0 navbar-vertical-divider">
                         </div>
@@ -276,7 +276,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link {{ Request::is('admin/amenities*') ? 'active' : '' }}"
                                     href="{{ route('amenities.index') }}">
                                     <div class="d-flex align-items-center">
@@ -284,15 +284,15 @@
                                         <span class="nav-link-text ps-1">Amenities</span>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item">
                                 <!-- Top-level link for AboutUs -->
-                                <a class="nav-link {{ Request::is('admin/property*') ? 'active' : '' }}"
-                                    href="{{ route('property.index') }}">
+                                <a class="nav-link {{ Request::is('admin/product*') ? 'active' : '' }}"
+                                    href="{{ route('product.index') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon"><i class="fas fa-building"></i></span>
-                                        <span class="nav-link-text ps-1">Properties</span>
+                                        <span class="nav-link-text ps-1">Products</span>
                                     </div>
                                 </a>
                             </li>

@@ -32,8 +32,8 @@
                         </div>
                     @endif
 
-                    <!-- Property creation form -->
-                    <form action="{{ route('property.store') }}" method="POST" enctype="multipart/form-data" id="propertyForm">
+                    <!-- Product creation form -->
+                    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" id="productForm">
                         @csrf
                         <input type="hidden" name="cropData" id="cropData">
                         <input type="hidden" name="main_image_cropped" id="croppedImage">
@@ -158,7 +158,7 @@
                         <div class="row mt-3">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Save Product</button>
-                                <a href="{{ route('property.index') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>
