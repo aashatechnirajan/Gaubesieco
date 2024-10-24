@@ -6,9 +6,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Properties List</h4>
+                    <h4>Product List</h4>
                     <a href="{{ route('property.create') }}" class="btn btn-primary float-end">Add New
-                        Property</a>
+                        Prduct</a>
                 </div>
                 <div class="card-body">
                     @if(session('success'))
@@ -32,9 +32,7 @@
                                     <th>Title</th>
                                     <th>Category</th>
                                     <th>Sub Category</th>
-                                    <th>Amenities</th>
-                                    <th>Price</th>
-                                    <th>Update Time</th>
+                                    <th>Selling Price</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -46,23 +44,9 @@
                                         <td>{{ $property->title }}</td>
                                         <td>{{ $property->category->title }}</td>
                                         <td>{{ $property->subCategory->title }}</td>
-                                        <td>
-                                            @if(is_array($property->amenities) && count($property->amenities) > 0)
-                                                @foreach($property->amenities as $amenityId)
-                                                    @php
-                                                        $amenity = App\Models\Amenity::find($amenityId);
-                                                    @endphp
-                                                    @if($amenity)
-                                                       {{ $amenity->title }}
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                <span class="text-muted">No amenities</span>
-                                            @endif
-                                        </td>
                                         
                                         <td>${{ number_format($property->price, 2) }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($property->update_time)->format('Y - F - d') }}</td>
+
                                         <td>
                                             @if($property->status)
                                                 <span class="badge bg-success">Active</span>
@@ -83,114 +67,73 @@
                                                 </button>
                                             </form>
 
+                                            <!-- Image Modal -->
 
-                                            <!-- Button to trigger Metadata Modal -->
-                                            @if($property->metadata)
-                                                <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#metadataModal{{ $property->id }}">
-                                                    M
+                                                <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#imageModal{{ $property->id }}">
+                                                    I
                                                 </button>
-                            
-
-                                                <!-- Metadata Modal with Edit Form -->
-                                                <div class="modal fade" id="metadataModal{{ $property->id }}" tabindex="-1" aria-labelledby="metadataModalLabel{{ $property->id }}" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="metadataModalLabel{{ $property->id }}">Edit Metadata Details</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route('metadata.update', $property->metadata->id) }}" method="POST">
-                                                                    @csrf
-                                                                    @method('PUT')
-
-                                                        <div class="form-group mb-3">
-                                                            <label for="main_image">Main Image</label>
-                                                            <input type="file" id="main_image" class="form-control" >
+    
+                                            <div class="modal fade" id="imageModal{{ $property->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $property->id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="imageModalLabel{{ $property->id }}">Edit Property Images</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            {{-- <form action="{{ route('property.updateImages', $property->id) }}" method="POST" enctype="multipart/form-data"> --}}
+                                                                @csrf
+                                                                @method('PUT')
+    <div class="form-group mb-3">
+        <label for="main_image">Main Image</label>
+        <input type="file" id="main_image" name="main_image" class="form-control">
+    </div>
 
-                                                        <!-- Cropped Main Image Preview -->
-                                                        <div class="form-group mb-3" id="cropped-preview-container"
+    <!-- Cropped Main Image Preview -->
+    <div class="form-group mb-3" id="cropped-preview-container"
                                                             style="display: none;">
                                                             <label>Cropped Main Image Preview:</label>
                                                             <img id="cropped-image-preview"
                                                                 style="max-width: 150px; max-height: 200px; display: block;">
                                                         </div>
 
-                                                        <!-- Hidden input to store the base64 string of the cropped image -->
-                                                        <input type="hidden" name="main_image_base64" id="main_image_base64"
-                                                            required>
+    <!-- Hidden input to store the base64 string of the cropped image -->
+    <input type="hidden" name="main_image_base64" id="main_image_base64">
 
-                                                        <!-- Cropping Modal -->
-                                                        <div class="modal fade" id="cropModal" tabindex="-1"
-                                                            aria-labelledby="cropModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="cropModalLabel">Crop Image
-                                                                        </h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <img id="image-preview"
-                                                                            style="width: 100%; height: auto; display: none;">
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Close</button>
-                                                                        <button type="button" id="saveCrop"
-                                                                            class="btn btn-primary">Save Crop</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+    <!-- Cropping Modal -->
+    <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalLabel">Crop Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="image-preview" style="width: 100%; height: auto; display: none;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="saveCrop" class="btn btn-primary">Save Crop</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="form-group mb-3">
+        <label for="other_images">Other Images</label>
+        <input type="file" id="other_images" class="form-control" name="other_images[]" multiple>
+    </div>
 
-
-                                                        <!-- Other Images Section -->
-                                                        @php        $otherImages = json_decode($property->other_images, true); @endphp
-                                                        @if(!empty($otherImages))
-                                                            <div id="otherImagesPreview" class="mb-3">
-                                                                @foreach($otherImages as $image)
-                                                                    <div class="card me-2 mb-2"
-                                                                        style="max-width: 150px; display: inline-block;">
-                                                                        <img src="{{ asset('/' . $image) }}" alt="Other Image"
-                                                                            class="card-img-top"
-                                                                            style="max-height: 150px; object-fit: cover;">
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                        @endif
-
-                                                        <div class="form-group mb-3">
-                                                            <label for="other_images">Other Images</label>
-                                                            <input type="file" id="other_images" class="form-control"
-                                                                name="other_images[]" multiple>
-                                                        </div>
-
-                                                        <!-- Preview Container for the Other Images -->
-                                                        <div class="form-group mb-3" id="other-images-preview-container"
-                                                            style="display: none;">
-                                                            <label>Selected Other Images Preview:</label>
-                                                            <div id="other-images-preview"
-                                                                style="display: flex; flex-wrap: wrap;"></div>
-                                                        </div>
-
-
-
-
-
-                                                                    <div class="form-group">
-                                                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
+   <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    </div>
+</form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endif
+                                            </div>
+                                   
 
                                      <!-- Button to trigger Offer Modal -->
                                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#offerModal{{ $property->id }}">

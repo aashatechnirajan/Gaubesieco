@@ -249,7 +249,7 @@
                             aria-controls="dashboard3">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                <span class="nav-link-text ps-1">Properties</span>
+                                <span class="nav-link-text ps-1">Products</span>
                             </div>
                         </a>
                         <ul class="nav collapse" id="dashboard3">

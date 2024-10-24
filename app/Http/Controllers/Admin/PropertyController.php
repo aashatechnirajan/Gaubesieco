@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Property;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\Amenity;
-use App\Models\Metadata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -21,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::with('metadata', 'category', 'subCategory')->latest()->get();
+        $properties = Product::with('category', 'subCategory')->latest()->get();
         return view('admin.property.index', compact('properties'));
     }
 
@@ -32,9 +30,7 @@ class PropertyController extends Controller
     {
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        $metadata = Metadata::all();
-        $amenities = Amenity::all();  
-        return view('admin.property.create', compact('categories', 'subCategories', 'metadata', 'amenities'));
+        return view('admin.property.create', compact('categories', 'subCategories'));
     }
 
     /**
@@ -50,75 +46,46 @@ class PropertyController extends Controller
             'cropData' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
-            'amenities' => 'required|array',
-            'amenities.*' => 'exists:amenities,id',
-            'street' => 'required|string|max:255',
-            'suburb' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'post_code' => 'required|string|max:20',
-            'country' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'price_type' => 'required|in:fixed,negotiable,on_request',
-            'bedrooms' => 'required|integer',
-            'bathrooms' => 'required|integer',
-            'area' => 'required|integer',
+            'cost_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+            'product_quantity' => 'required|integer',
             'status' => 'required|boolean',
             'availability_status' => 'required|in:available,sold,rental',
-            'rental_period' => 'nullable|string',
-            'keywords' => 'nullable|string',
-            'other_images' => 'required|array',
-            'other_images.*' => 'required|file|mimes:jpg,jpeg,png,webp|max:2048',
-            'update_time' => 'required|date_format:Y-m-d H:i:s',
+            'other_images.*' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         // Handle the main image upload (base64 images)
         $images = $this->handleBase64Images($request->input('main_image'), 'property');
 
         // Handle other images upload
-        $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
+        $otherImages = [];
+        if ($request->hasFile('other_images')) {
+            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
+        }
 
-        // Create a metadata entry
-        $metadata = Metadata::create([
-            'meta_title' => $request->title,
-            'meta_description' => $request->description,
-            'meta_keywords' => $request->suburb,
-            'slug' => Str::slug($request->title),
-        ]);
-
-        // Create new property record and associate with metadata
-        Property::create([
+        // Create new property record
+        Product::create([
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
-            'amenities' => $request->amenities,
-            'street' => $request->street,
-            'suburb' => $request->suburb,
-            'state' => $request->state,
-            'post_code' => $request->post_code,
-            'country' => $request->country,
-            'price' => $request->price,
-            'price_type' => $request->price_type,
-            'bedrooms' => $request->bedrooms,
-            'bathrooms' => $request->bathrooms,
-            'area' => $request->area,
+            'cost_price' => $request->cost_price,
+            'selling_price' => $request->selling_price,
+            'product_quantity' => $request->product_quantity,
             'status' => $request->status,
             'main_image' => json_encode($images),
             'other_images' => json_encode($otherImages),
             'availability_status' => $request->availability_status,
-            'rental_period' => $request->rental_period,
-            'metadata_id' => $metadata->id,
-            'update_time' => $request->input('update_time'),
         ]);
 
-        session()->flash('success', 'Property created successfully.');
+        session()->flash('success', 'Product created successfully.');
         return redirect()->route('property.index');
     }
 
     /**
      * Display the specified property.
      */
-    public function show(Property $property)
+    public function show(Product $property)
     {
         return view('admin.property.show', compact('property'));
     }
@@ -126,20 +93,17 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified property.
      */
-    public function edit(Property $property)
+    public function edit(Product $property)
     {
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        $amenities = Amenity::all();
-        $metadata = Metadata::all();
-
-        return view('admin.property.update', compact('property', 'categories', 'subCategories', 'amenities', 'metadata'));
+        return view('admin.property.update', compact('property', 'categories', 'subCategories'));
     }
 
     /**
      * Update the specified property in storage.
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, Product $property)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -148,50 +112,27 @@ class PropertyController extends Controller
             'main_image.*' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
-            'amenities' => 'required|array',
-            'amenities.*' => 'exists:amenities,id',
-            'street' => 'required|string|max:255',
-            'suburb' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'post_code' => 'required|string|max:20',
-            'country' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'price_type' => 'required|in:fixed,negotiable,on_request',
-            'bedrooms' => 'required|integer',
-            'bathrooms' => 'required|integer',
-            'area' => 'required|integer',
+            'cost_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+            'product_quantity' => 'required|integer',
             'status' => 'required|boolean',
             'availability_status' => 'required|in:available,sold,rental',
-            'rental_period' => 'nullable|string',
-            'keywords' => 'nullable|string',
-            'other_images' => 'nullable|array',
             'other_images.*' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
-            'update_time' => 'required|date_format:Y-m-d H:i:s',
         ]);
 
         // Handle main image update if provided
         if ($request->has('main_image')) {
             $this->deleteImages(json_decode($property->main_image, true), 'property/');
             $images = $this->handleBase64Images($request->input('main_image'), 'property');
-        } else {
-            $images = json_decode($property->main_image, true);
+            $property->main_image = json_encode($images);
         }
 
         // Handle other images update if provided
         if ($request->hasFile('other_images')) {
             $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
             $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
-        } else {
-            $otherImages = json_decode($property->other_images, true);
+            $property->other_images = json_encode($otherImages);
         }
-
-        // Update metadata record
-        $property->metadata()->updateOrCreate([], [
-            'meta_title' => $request->title,
-            'meta_description' => $request->description,
-            'meta_keywords' => $request->suburb,
-            'slug' => Str::slug($request->title),
-        ]);
 
         // Update the property record
         $property->update([
@@ -199,31 +140,35 @@ class PropertyController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
-            'amenities' => $request->amenities,
-            'street' => $request->street,
-            'suburb' => $request->suburb,
-            'state' => $request->state,
-            'post_code' => $request->post_code,
-            'country' => $request->country,
-            'price' => $request->price,
-            'price_type' => $request->price_type,
-            'bedrooms' => $request->bedrooms,
-            'bathrooms' => $request->bathrooms,
-            'area' => $request->area,
+            'cost_price' => $request->cost_price,
+            'selling_price' => $request->selling_price,
+            'product_quantity' => $request->product_quantity,
             'status' => $request->status,
-            'other_images' => json_encode($otherImages),
             'availability_status' => $request->availability_status,
-            'rental_period' => $request->rental_period,
-            'update_time' => $request->input('update_time'),
         ]);
 
-        session()->flash('success', 'Property updated successfully.');
+        session()->flash('success', 'Product updated successfully.');
         return redirect()->route('property.index');
     }
 
     /**
-     * Handle base64 image uploads and convert them to WEBP.
+     * Remove the specified property from storage.
      */
+    public function destroy(Product $property)
+    {
+        // Delete main images
+        $this->deleteImages(json_decode($property->main_image, true), 'property/');
+
+        // Delete other images
+        $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
+
+        // Delete the property from the database
+        $property->delete();
+
+        return redirect()->route('property.index')->with('success', 'Product deleted successfully.');
+    }
+
+    // Keep all the existing private methods for image handling exactly as they are
     private function handleBase64Images(array $base64Images, $folder, $existingImages = [])
     {
         // Initialize with existing images if provided
@@ -264,9 +209,6 @@ class PropertyController extends Controller
         return $images;
     }
 
-    /**
-     * Handle uploaded image files and convert them to WEBP.
-     */
     private function handleUploadedImages($uploadedFiles, $folder, $existingImages = [])
     {
         // Initialize with existing images if any
@@ -299,29 +241,6 @@ class PropertyController extends Controller
         return $images;
     }
 
-    /**
-     * Remove the specified property from storage.
-     */
-    public function destroy(Property $property)
-    {
-        // Delete main images
-        $this->deleteImages(json_decode($property->main_image, true), 'property/');
-
-        // Delete other images
-        $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
-
-        // Delete the property from the database
-        $property->delete();
-
-        return redirect()->route('property.index')->with('success', 'Property deleted successfully.');
-    }
-
-    /**
-     * Deletes images from the specified path.
-     *
-     * @param array|string|null $images
-     * @param string $folderPath
-     */
     private function deleteImages($images, $folderPath)
     {
         // If $images is a string, convert it to an array
@@ -344,46 +263,5 @@ class PropertyController extends Controller
                 }
             }
         }
-    }
-
-    /**
-     * Update images for the specified property.
-     */
-    public function updateImages(Request $request, $id)
-    {
-        $request->validate([
-            'main_image_base64' => 'nullable|string',
-            'other_images.*' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        $property = Property::findOrFail($id);
-
-        // Handle main image update if provided
-        if ($request->has('main_image_base64')) {
-            $mainImageData = $request->input('main_image_base64');
-
-            // Remove the data:image part and decode the image
-            $mainImage = str_replace('data:image/jpeg;base64,', '', $mainImageData);
-            $mainImage = base64_decode($mainImage);
-            
-            // Save the image to the desired location
-            $mainImagePath = 'property/' . time() . '.webp';
-            file_put_contents(storage_path('app/public/' . $mainImagePath), $mainImage);
-            $property->main_image = json_encode([$mainImagePath]);
-        }
-
-        // Handle other images update
-        if ($request->hasFile('other_images')) {
-            // Delete existing other images
-            $this->deleteImages(json_decode($property->other_images, true), 'property/other_images/');
-            // Handle new other images
-            $otherImages = $this->handleUploadedImages($request->file('other_images'), 'property/other_images');
-            $property->other_images = json_encode($otherImages);
-        }
-
-        $property->save();
-
-        session()->flash('success', 'Images updated successfully.');
-        return redirect()->back();
     }
 }

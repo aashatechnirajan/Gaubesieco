@@ -1,12 +1,26 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
+        <div class="col-md-12">
+            <div class="">
+                <style>
+                    .section1 {
+                        background-color: #ffffff; 
+                        padding: 0 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                    }
+                    .section2 {
+                        background-color: #f0f4f8; 
+                        padding: 0 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                    }
+                </style>
                 <div class="card-header">
-                    <h4>Edit Property</h4>
+                    <h4>Edit Product</h4>
                 </div>
                 <div class="card-body">
                     @if(session('success'))
@@ -32,185 +46,125 @@
                         </div>
                     @endif
 
-                    <!-- Property edit form -->
-                    <form action="{{ route('property.update', $property->id) }}" method="POST"
-                        enctype="multipart/form-data" id="propertyForm">
+                    <form action="{{ route('property.update', $property->id) }}" method="POST" enctype="multipart/form-data" id="propertyForm">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="cropData" id="cropData">
                         <input type="hidden" name="main_image_cropped" id="croppedImage">
 
-                        <!-- Title -->
-                        <div class="form-group mb-3">
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="title" class="form-control"
-                                value="{{ old('title', $property->title) }}" required>
-                        </div>
+                        <div class="row d-flex gap-2">
+                            <!-- Left Section -->
+                            <div class="col-md-7 section1">
+                                <!-- Title -->
+                                <div class="form-group mb-3">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $property->title) }}" required>
+                                </div>
 
-                        <!-- Description -->
-                        <div class="form-group mb-3">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" rows="5"
-                                required>{{ old('description', $property->description) }}</textarea>
-                        </div>
+                                <!-- Description -->
+                                <div class="form-group mb-3">
+                                    <label for="description">Description</label>
+                                    <textarea name="description" id="description" class="form-control" rows="5" required>{{ old('description', $property->description) }}</textarea>
+                                </div>
 
+                                <!-- Main Image Upload -->
+                                <div class="form-group mb-3">
+                                    <label for="main_image">Main Image</label>
+                                    <input type="file" id="main_image" class="form-control">
+                                    <input type="hidden" name="main_image[0]" id="main_image_base64">
+                                </div>
 
-                       <!-- Category -->
-<div class="form-group mb-3">
-    <label for="category_id">Category</label>
-    <select name="category_id" id="category_id" class="form-control" required>
-        <option value="">Choose Category</option>
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}" {{ old('category_id', $property->category_id) == $category->id ? 'selected' : '' }}>
-                {{ $category->title }}
-            </option>
-        @endforeach
-    </select>
-</div>
+                                <!-- Cropped Main Image Preview -->
+                                <div class="form-group mb-3" id="cropped-preview-container" style="display: none;">
+                                    <label>Cropped Main Image Preview:</label>
+                                    <img id="cropped-image-preview" style="max-width: 150px; max-height: 200px; display: block;">
+                                </div>
 
-<!-- Sub Category -->
-<div class="form-group mb-3">
-    <label for="sub_category_id">Sub Category</label>
-    <select name="sub_category_id" id="sub_category_id" class="form-control" required>
-        <option value="">Choose Sub Category</option>
-    </select>
-</div>
+                                <!-- Other Images Upload -->
+                                <div class="form-group mb-3">
+                                    <label for="other_images">Other Images</label>
+                                    <input type="file" id="other_images" class="form-control" name="other_images[]" multiple>
+                                </div>
 
-<!-- Amenities -->
-<div class="form-group">
-    <label for="amenities">Amenities</label>
-    @foreach($amenities as $amenity)
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="amenities[]" value="{{ $amenity->id }}" id="amenity_{{ $amenity->id }}"
-                   {{ (isset($property) && in_array($amenity->id, $property->amenities ?? [])) ? 'checked' : '' }}>
-            <label class="form-check-label" for="amenity_{{ $amenity->id }}">
-                {{ $amenity->title }}
-            </label>
-        </div>
-    @endforeach
-</div>
-
-
-
-                        <!-- Street -->
-                        <div class="form-group mb-3">
-                            <label for="street">Street</label>
-                            <input type="text" name="street" id="street" class="form-control"
-                                value="{{ old('street', $property->street) }}" required>
-                        </div>
-
-                        <!-- Suburb -->
-                        <div class="form-group mb-3">
-                            <label for="suburb">Suburb</label>
-                            <input type="text" name="suburb" id="suburb" class="form-control"
-                                value="{{ old('suburb', $property->suburb) }}" required>
-                        </div>
-
-                        <!-- State -->
-                        <div class="form-group mb-3">
-                            <label for="state">State</label>
-                            <input type="text" name="state" id="state" class="form-control"
-                                value="{{ old('state', $property->state) }}" required>
-                        </div>
-
-                        <!-- Post Code -->
-                        <div class="form-group mb-3">
-                            <label for="post_code">Post Code</label>
-                            <input type="number" name="post_code" id="post_code" min="0" minlength="4"
-                                class="form-control" value="{{ old('post_code', $property->post_code) }}" required>
-                        </div>
-
-                        <!-- Country -->
-                        <div class="form-group mb-3">
-                            <label for="country">Country</label>
-                            <input type="text" name="country" id="country" class="form-control"
-                                value="{{ old('country', $property->country) }}">
-                        </div>
-
-                        <!-- Price -->
-                        <div class="form-group mb-3">
-                            <label for="price">Price</label>
-                            <input type="number" name="price" id="price" class="form-control" min="0"
-                                value="{{ old('price', $property->price) }}" required>
-                        </div>
-
-                        <!-- Price Type -->
-                        <div class="form-group mb-3">
-                            <label for="price_type">Price Type</label>
-                            <select name="price_type" id="price_type" class="form-control" required>
-                                <option value="fixed" {{ old('price_type', $property->price_type) == 'fixed' ? 'selected' : '' }}>Fixed</option>
-                                <option value="negotiable" {{ old('price_type', $property->price_type) == 'negotiable' ? 'selected' : '' }}>Negotiable</option>
-                                <option value="on_request" {{ old('price_type', $property->price_type) == 'on_request' ? 'selected' : '' }}>On Request</option>
-                            </select>
-                        </div>
-
-                        <!-- Bedrooms -->
-                        <div class="form-group mb-3">
-                            <label for="bedrooms">Bedrooms</label>
-                            <input type="number" name="bedrooms" id="bedrooms" class="form-control" min="0"
-                                value="{{ old('bedrooms', $property->bedrooms) }}" required>
-                        </div>
-
-                        <!-- Bathrooms -->
-                        <div class="form-group mb-3">
-                            <label for="bathrooms">Bathrooms</label>
-                            <input type="number" name="bathrooms" id="bathrooms" class="form-control" min="0"
-                                value="{{ old('bathrooms', $property->bathrooms) }}" required>
-                        </div>
-
-                        <!-- Area -->
-                        <div class="form-group mb-3">
-                            <label for="area">Area (sq ft)</label>
-                            <input type="number" name="area" id="area" class="form-control" min="0"
-                                value="{{ old('area', $property->area) }}" required>
-                        </div>
-
-                        <!-- Status -->
-                        <div class="form-group mb-3">
-                            <label for="status">Status</label>
-                            <div class="form-check">
-                                <input type="radio" name="status" id="status_active" value="1" class="form-check-input"
-                                    {{ old('status', $property->status) == '1' ? 'checked' : '' }} required>
-                                <label for="status_active" class="form-check-label">Active</label>
+                                <!-- Other Images Preview -->
+                                <div class="form-group mb-3" id="other-images-preview-container" style="display: none;">
+                                    <label>Selected Other Images Preview:</label>
+                                    <div id="other-images-preview" style="display: flex; flex-wrap: wrap;"></div>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input type="radio" name="status" id="status_inactive" value="0"
-                                    class="form-check-input" {{ old('status', $property->status) == '0' ? 'checked' : '' }} required>
-                                <label for="status_inactive" class="form-check-label">Inactive</label>
+
+                            <!-- Right Section -->
+                            <div class="col-md-4 section2">
+                                <div class="row">
+                                    <!-- Category -->
+                                    <div class="form-group mb-3 col-md-11">
+                                        <label for="category_id">Category</label>
+                                        <select name="category_id" id="category_id" class="form-control" required>
+                                            <option value="">Choose Category</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" {{ old('category_id', $property->category_id) == $category->id ? 'selected' : '' }}>
+                                                    {{ $category->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <!-- Sub Category -->
+                                    <div class="form-group mb-3 col-md-11">
+                                        <label for="sub_category_id">Sub Category</label>
+                                        <select name="sub_category_id" id="sub_category_id" class="form-control" required>
+                                            <option value="">Choose Sub Category</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Cost Price -->
+                                    <div class="form-group mb-3 col-md-11">
+                                        <label for="cost_price">Cost Price</label>
+                                        <input type="text" name="cost_price" id="cost_price" class="form-control" value="{{ old('cost_price', $property->cost_price) }}" required>
+                                    </div>
+
+                                    <!-- Selling Price-->
+                                    <div class="form-group mb-3 col-md-6">
+                                        <label for="selling_price">Selling Price</label>
+                                        <input type="text" name="selling_price" id="selling_price" class="form-control" value="{{ old('selling_price', $property->selling_price) }}" required>
+                                    </div>
+
+                                    <!-- Quantity -->
+                                    <div class="form-group mb-3 col-md-6">
+                                        <label for="product_quantity">Quantity</label>
+                                        <input type="text" name="product_quantity" id="product_quantity" class="form-control" value="{{ old('product_quantity', $property->product_quantity) }}" required>
+                                    </div>
+
+                                    <!-- Availability Status -->
+                                    <div class="form-group mb-3 col-md-7">
+                                        <label for="availability_status">Availability Status</label>
+                                        <select name="availability_status" id="availability_status" class="form-control" required>
+                                            <option value="available" {{ old('availability_status', $property->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
+                                            <option value="sold" {{ old('availability_status', $property->availability_status) == 'sold' ? 'selected' : '' }}>Sold</option>
+                                      
+                                        </select>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="form-group mb-3 col-md-6">
+                                        <label for="status">Status</label>
+                                        <div class="gap-2">
+                                            <div class="form-check">
+                                                <input type="radio" name="status" id="status_active" value="1" class="form-check-input" {{ old('status', $property->status) == '1' ? 'checked' : '' }} required>
+                                                <label for="status_active" class="form-check-label">Active</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" name="status" id="status_inactive" value="0" class="form-check-input" {{ old('status', $property->status) == '0' ? 'checked' : '' }} required>
+                                                <label for="status_inactive" class="form-check-label">Inactive</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Availability Status -->
-                        <div class="form-group mb-3">
-                            <label for="availability_status">Availability Status</label>
-                            <select name="availability_status" id="availability_status" class="form-control" required>
-                                <option value="available" {{ old('availability_status', $property->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
-                                <option value="sold" {{ old('availability_status', $property->availability_status) == 'sold' ? 'selected' : '' }}>Sold</option>
-                                <option value="rental" {{ old('availability_status', $property->availability_status) == 'rental' ? 'selected' : '' }}>Rental</option>
-                            </select>
-                        </div>
-
-                        <!-- Rental Period -->
-                        <div class="form-group mb-3">
-                            <label for="rental_period">Rental Period</label>
-                            <input type="text" name="rental_period" id="rental_period" class="form-control"
-                                value="{{ old('rental_period', $property->rental_period) }}">
-                        </div>
-
-                   
-                    
-                       
-                       
-
-                        <!-- Keywords -->
-                        <div class="form-group mb-3">
-                            <label for="keywords">Keywords</label>
-                            <input type="text" name="keywords" id="keywords" class="form-control"
-                                value="{{ old('keywords', $property->metadata->meta_keywords) }}">
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Property</button>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary">Update Product</button>
                             <a href="{{ route('property.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
@@ -287,16 +241,12 @@
             const reader = new FileReader();
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
-                // Set the base64 string of the cropped image into the hidden input
                 document.getElementById('main_image_base64').value = reader.result;
-
-                // Set cropped image preview
                 const croppedImagePreview = document.getElementById('cropped-image-preview');
                 croppedImagePreview.src = reader.result;
                 document.getElementById('cropped-preview-container').style.display = 'block';
             };
 
-            // Close modal after saving crop
             const cropModal = bootstrap.Modal.getInstance(document.getElementById('cropModal'));
             cropModal.hide();
         }, 'image/png');
@@ -306,7 +256,7 @@
     document.getElementById('other_images').addEventListener('change', function (e) {
         const files = e.target.files;
         const previewContainer = document.getElementById('other-images-preview');
-        previewContainer.innerHTML = ''; // Clear previous previews
+        previewContainer.innerHTML = '';
         document.getElementById('other-images-preview-container').style.display = 'block';
 
         Array.from(files).forEach(file => {
@@ -330,71 +280,35 @@
             const toast = new bootstrap.Toast(document.querySelector('.toast'));
             toast.show();
         }
-    });
 
-    document.addEventListener('DOMContentLoaded', function () {
-    const categorySelect = document.getElementById('category_id');
-    const subCategorySelect = document.getElementById('sub_category_id');
-    
-    // Object to store all subcategories grouped by category ID
-    const subCategories = @json($subCategories->groupBy('category_id'));
+        const categorySelect = document.getElementById('category_id');
+        const subCategorySelect = document.getElementById('sub_category_id');
+        
+        // Object to store all subcategories grouped by category ID
+        const subCategories = @json($subCategories->groupBy('category_id'));
 
-    function updateSubCategories() {
-        const selectedCategoryId = categorySelect.value;
-        
-        // Store the current selection
-        const currentSelection = subCategorySelect.value;
-        
-        // Clear current options
-        subCategorySelect.innerHTML = '<option value="">Choose Sub Category</option>';
-        
-        if (selectedCategoryId && subCategories[selectedCategoryId]) {
-            subCategories[selectedCategoryId].forEach(function(subCategory) {
-                const option = new Option(subCategory.title, subCategory.id);
-                option.selected = (subCategory.id == currentSelection);
-                subCategorySelect.add(option);
-            });
+        function updateSubCategories() {
+            const selectedCategoryId = categorySelect.value;
+            
+            // Store the current selection
+            const currentSelection = subCategorySelect.value;
+            
+            // Clear current options
+            subCategorySelect.innerHTML = '<option value="">Choose Sub Category</option>';
+            
+            if (selectedCategoryId && subCategories[selectedCategoryId]) {
+                subCategories[selectedCategoryId].forEach(function(subCategory) {
+                    const option = new Option(subCategory.title, subCategory.id);
+                    option.selected = (subCategory.id == currentSelection);
+                    subCategorySelect.add(option);
+                });
+            }
         }
-    }
 
-    categorySelect.addEventListener('change', updateSubCategories);
+        categorySelect.addEventListener('change', updateSubCategories);
 
-    // Initial update on page load
-    updateSubCategories();
-});
+        // Initial update on page load
+        updateSubCategories();
     });
-
-    document.addEventListener('DOMContentLoaded', function () {
-    const categorySelect = document.getElementById('category_id');
-    const subCategorySelect = document.getElementById('sub_category_id');
-    
-    // Object to store all subcategories grouped by category ID
-    const subCategories = @json($subCategories->groupBy('category_id'));
-
-    function updateSubCategories() {
-        const selectedCategoryId = categorySelect.value;
-        
-        // Store the current selection
-        const currentSelection = subCategorySelect.value;
-        
-        // Clear current options
-        subCategorySelect.innerHTML = '<option value="">Choose Sub Category</option>';
-        
-        if (selectedCategoryId && subCategories[selectedCategoryId]) {
-            subCategories[selectedCategoryId].forEach(function(subCategory) {
-                const option = new Option(subCategory.title, subCategory.id);
-                option.selected = (subCategory.id == currentSelection);
-                subCategorySelect.add(option);
-            });
-        }
-    }
-
-    categorySelect.addEventListener('change', updateSubCategories);
-
-    // Initial update on page load
-    updateSubCategories();
-});
 </script>
 @endsection
-
-
