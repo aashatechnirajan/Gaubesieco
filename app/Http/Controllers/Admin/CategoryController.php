@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('metadata')->get();
+        $categories = Category::all();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -31,37 +31,29 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'meta_keywords' => 'required|string|max:255',
-        ]);
-
-        // Create metadata dynamically based on category title
-        $metaKeywordsArray = array_map('trim', explode(',', $request->keywords));
-        $metadata = Metadata::create([
-            'meta_title' => $request->title,
-            'meta_description' => "Description for " . $request->title,
-            'meta_keywords' => json_encode($metaKeywordsArray),
-            'slug' => Str::slug($request->title),
-        ]);
-
-        // Create the category with the linked metadata
-        Category::create([
-            'title' => $request->title,
-            'metadata_id' => $metadata->id,
-        ]);
-
-        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
-    }
+{
+    // Validate the request
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+    ]);
+    
+    // Create the category
+    Category::create([
+        'title' => $request->title,
+        'description' => $request->description,
+    ]);
+    
+    return redirect()->route('categories.index')->with('success', 'Category created successfully.');
+}
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $category = Category::with('metadata')->findOrFail($id);
-        return view('admin.categories.show', compact('category'));
+        // $category = Category::findOrFail($id);
+        // return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -69,7 +61,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::with('metadata')->findOrFail($id);
+        $category = Category::findOrFail($id);
         return view('admin.categories.edit', compact('category'));
     }
 
@@ -79,25 +71,18 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $metadata = $category->metadata;
+       
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'meta_keywords' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
         ]);
 
-        // Update metadata with the updated title and other fields
-        $metaKeywordsArray = array_map('trim', explode(',', $request->keywords));
-        $metadata->update([
-            'meta_title' => $request->title,
-            'meta_description' => "Description for " . $request->title,
-            'meta_keywords' =>json_encode($metaKeywordsArray),
-            'slug' => Str::slug($request->title),
-        ]);
 
         // Update the category
         $category->update([
             'title' => $request->title,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');

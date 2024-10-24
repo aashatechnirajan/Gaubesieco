@@ -11,10 +11,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->string('fav_properties');
+            $table->string('fav_products');
             $table->string('name');
             $table->string('email');
-            $table->foreignId('properties_id')->constrained('properties')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('product')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -25,8 +25,8 @@ class SubCategory extends Model
         return $this->belongsTo(Metadata::class);
     }
 
-    public function properties()
+    public function product()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Product::class);
     }
 }

@@ -29,9 +29,9 @@
                         </div>
 
                         {{-- Keywords Input --}}
-                        <div class="form-group mb-3" style="display:hidden">
-                            <label for="meta_keywords">Keywords</label>
-                            <input type="text" name="meta_keywords" id="meta_keywords" class="form-control" value="{{ old('meta_keywords') }}" required>
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <input type="textarea" name="description" id="description" class="form-control" value="{{ old('description') }}" required>
                         </div>
 
                         {{-- Submit and Cancel Buttons --}}

@@ -10,17 +10,14 @@ class Category extends Model
 
     protected $fillable = [
         'title',
-        'metadata_id'
+        'description'
     ];
 
     // Relationships
-    public function metadata()
-    {
-        return $this->belongsTo(Metadata::class);
-    }
+ 
 
-    public function properties()
+    public function products()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Product::class);
     }
 }

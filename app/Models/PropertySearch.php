@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PropertySearch extends Model
 {
-    // The model uses the 'properties' table
-    protected $table = 'properties';
+    // The model uses the 'product' table
+    protected $table = 'product';
 
     // Define relationships to use in scopes
     public function category()

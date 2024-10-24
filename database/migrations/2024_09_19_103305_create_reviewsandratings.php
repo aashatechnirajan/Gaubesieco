@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('reviews');
             $table->string('ratings');
-            $table->foreignId('properties_id')->constrained('properties')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('product')->onDelete('cascade');
             $table->timestamps();
         });
     }

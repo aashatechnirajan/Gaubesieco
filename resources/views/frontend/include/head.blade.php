@@ -1,7 +1,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nexon Property</title> <!-- Set the title -->
+  <title>Gaubesi</title> <!-- Set the title -->
 
     <!-- Set the favicon -->
     <link rel="icon" href="{{ asset('image/logo.png') }}" type="image/png">

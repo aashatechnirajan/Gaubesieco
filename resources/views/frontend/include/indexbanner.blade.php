@@ -56,15 +56,9 @@
 
  }
 
-
-
-
 }
 
-
-
 </style>
-
 
 <section class="container-fluid p-0 m-0 herosection">
   <div class="container py-5">
@@ -92,15 +86,10 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </a>
-      </div>
+      </div> 
     </div>
   </div>
 </section>
-
-
-
-
-
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

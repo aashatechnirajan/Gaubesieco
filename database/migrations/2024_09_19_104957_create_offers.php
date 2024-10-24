@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('featured_properties');
-            $table->string('offered_properties');
-            $table->foreignId('properties_id')->constrained('properties')->onDelete('cascade');
+            $table->string('featured_product');
+            $table->string('offered_product');
+            $table->foreignId('product_id')->constrained('product')->onDelete('cascade');
             $table->timestamps();
         });
     }

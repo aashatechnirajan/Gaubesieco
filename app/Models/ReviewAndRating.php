@@ -13,11 +13,11 @@ class ReviewAndRating extends Model
 
 
     protected $table = 'reviewsandratings';
-    protected $fillable = ['name', 'email', 'reviews','ratings','properties_id','status'];
+    protected $fillable = ['name', 'email', 'reviews','ratings','product_id','status'];
 
-    public function property()
+    public function product()
     {
-        return $this->belongsTo(Property::class, 'properties_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
 

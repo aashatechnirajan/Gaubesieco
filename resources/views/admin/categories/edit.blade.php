@@ -13,8 +13,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="meta_keywords" class="form-label">Keywords</label>
-            <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" value="{{ $category->metadata->meta_keywords }}" required>
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" value="{{ $category->description }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Category</button>

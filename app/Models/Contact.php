@@ -16,11 +16,11 @@ class Contact extends Model
         'email',
         'message',
         'inspection',
-        'properties_id'
+        'product_id'
     ];
 
-    public function property()
+    public function product()
 {
-    return $this->belongsTo(Property::class, 'properties_id');
+    return $this->belongsTo(Product::class, 'product_id');
 }
 }

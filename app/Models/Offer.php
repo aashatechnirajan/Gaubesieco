@@ -8,10 +8,10 @@ class Offer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['featured_properties', 'offered_properties', 'properties_id'];
+    protected $fillable = ['featured_products', 'offered_products', 'product_id'];
 
-    public function property()
+    public function product()
     {
-        return $this->belongsTo(Property::class, 'properties_id');
+        return $this->belongsTo(Product::class, 'product_id');
     } 
 }

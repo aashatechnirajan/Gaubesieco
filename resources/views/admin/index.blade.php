@@ -42,7 +42,7 @@
                 <div class="card-body d-flex align-items-center">
                     {{-- <i class="fas fa-home fa-2x mr-2"></i> --}}
                     <div>
-                        <h5 class="card-title">Available Properties</h5>
+                        <h5 class="card-title">Available Product</h5>
                         <p class="card-text property-count">{{ $availableCount }}</p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="card-body d-flex align-items-center">
                     {{-- <i class="fas fa-tags fa-2x mr-2"></i> --}}
                     <div>
-                        <h5 class="card-title">Sold Properties</h5>
+                        <h5 class="card-title">Sold Product</h5>
                         <p class="card-text property-count">{{ $soldCount }}</p>
                     </div>
                 </div>
@@ -63,10 +63,10 @@
             <div class="card dashboard-card bg-primary text-white">
                 <div class="card-body d-flex align-items-center">
                     {{-- <i class="fas fa-key fa-2x mr-2"></i> --}}
-                    <div>
+                    {{-- <div>
                         <h5 class="card-title">Rental Properties</h5>
                         <p class="card-text property-count">{{ $rentalCount }}</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

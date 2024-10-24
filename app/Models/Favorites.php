@@ -9,11 +9,11 @@ class Favorites extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fav_properties', 'name', 'email', 'properties_id'];
+    protected $fillable = ['fav_products', 'name', 'email', 'product_id'];
   
-    public function property()
+    public function product()
     {
-        return $this->belongsTo(Property::class, 'properties_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
 

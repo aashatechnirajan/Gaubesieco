@@ -5,69 +5,51 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class Product extends Model
 {
     use HasFactory;
 
+    // Define the table name, since it differs from the default pluralized form
+    protected $table = 'product';
+
+    // Fillable fields that can be mass-assigned
     protected $fillable = [
         'title',
         'description',
         'category_id',
         'sub_category_id',
-        'amenities',
-        'amenities',
-        'street',
-        'suburb',
-        'state',
-        'post_code',
-        'country',
-        'price',
-        'price_type',
-        'bedrooms',
-        'bathrooms',
-        'area',
+        'cost_price',
+        'selling_price',
+        'product_quantity',
         'status',
         'main_image',
         'availability_status',
-        'rental_period',
         'other_images',
-        'metadata_id',
-        'update_time' 
     ];
 
+    // Casts the `other_images` column as an array
     protected $casts = [
         'other_images' => 'array',
-        'amenities' => 'array',
-        'update_time' => 'date',
+        'status' => 'boolean',
     ];
 
     // Relationships
+
+    // A product belongs to a category
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    // A product belongs to a sub-category
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);
     }
 
-
-    public function metadata()
-    {
-        return $this->belongsTo(Metadata::class);
-    }
-
+    // A product can have one offer
     public function offer()
-{
-    return $this->hasOne(Offer::class, 'properties_id');
-
-}
-    
-public function amenities()
-{
-    return $this->hasMany(Amenity::class);
-}
-
-
+    {
+        return $this->hasOne(Offer::class, 'product_id');
+    }
 }
